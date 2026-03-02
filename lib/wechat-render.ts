@@ -48,7 +48,7 @@ function replaceSpacesOutsideTags(fragment: string): string {
  * - 标签外的空格 → &#160;（含行首与行内），避免公众号粘贴时折叠空格
  */
 function protectCodeWhitespaceInHtml(html: string): string {
-	return html.replace(/<pre([^>]*)>([\s\S]*?)<\/pre>/gi, (_, attrs, inner) => {
+	return html.replace(/<pre([^>]*)>([\s\S]*?)<\/pre>/gi, (_: string, attrs: string, inner: string) => {
 		const trimmed = inner.trim();
 		let s = trimmed
 			.replace(/\r\n|\r|\n/g, "<br>")
@@ -64,14 +64,14 @@ function protectCodeWhitespaceInHtml(html: string): string {
 		const criticalPreStyle = "white-space:pre;overflow-x:auto";
 		const styleMatch = attrs.match(/style\s*=\s*["']([^"']*)["']/i);
 		const attrsOut = styleMatch
-			? attrs.replace(/style\s*=\s*["']([^"']*)["']/i, (_m, inner) => `style="${inner};${criticalPreStyle}"`)
+			? attrs.replace(/style\s*=\s*["']([^"']*)["']/i, (_m: string, styleInner: string) => `style="${styleInner};${criticalPreStyle}"`)
 			: `${attrs} style="${criticalPreStyle}"`;
 
 		// 内层 code 不收缩宽度，避免长行被挤换行（display:table + min-width:max-content）
 		const criticalCodeStyle = "white-space:pre;display:table;min-width:max-content";
-		s = s.replace(/<code[^>]*>/i, (tag) => {
+		s = s.replace(/<code[^>]*>/i, (tag: string) => {
 			if (/style\s*=/i.test(tag)) {
-				return tag.replace(/style\s*=\s*["']([^"']*)["']/i, (_m2, inner) => `style="${inner};${criticalCodeStyle}"`);
+				return tag.replace(/style\s*=\s*["']([^"']*)["']/i, (_m2: string, styleInner: string) => `style="${styleInner};${criticalCodeStyle}"`);
 			}
 			return tag.replace(/>$/, ` style="${criticalCodeStyle}">`);
 		});
