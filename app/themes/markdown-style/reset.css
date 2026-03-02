@@ -1,0 +1,86 @@
+/*
+ * Markdown 预览通用 Reset（作用于 .markdown-preview 子树）
+ * 基于 bm.md 的 reset.css，作用域从 #bm-md 改为 .markdown-preview
+ */
+.markdown-preview *,
+.markdown-preview *::before,
+.markdown-preview *::after {
+  box-sizing: border-box;
+}
+
+.markdown-preview * {
+  margin: 0;
+}
+
+.markdown-preview {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-autospace: normal;
+  text-align: left;
+}
+
+.markdown-preview img,
+.markdown-preview picture,
+.markdown-preview video,
+.markdown-preview canvas,
+.markdown-preview svg {
+  display: block;
+  max-width: 100%;
+}
+
+.markdown-preview input,
+.markdown-preview button,
+.markdown-preview textarea,
+.markdown-preview select {
+  font: inherit;
+}
+
+.markdown-preview p,
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6 {
+  overflow-wrap: break-word;
+}
+
+.markdown-preview figure.markdown-preview-figure-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.markdown-preview figure.markdown-preview-figure-table table {
+  margin: 0;
+}
+
+@media print {
+  .markdown-preview {
+    padding: 4em;
+  }
+
+  .markdown-preview p,
+  .markdown-preview li,
+  .markdown-preview blockquote,
+  .markdown-preview pre,
+  .markdown-preview img,
+  .markdown-preview figure,
+  .markdown-preview table,
+  .markdown-preview tr,
+  .markdown-preview dl,
+  .markdown-preview details {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .markdown-preview h1,
+  .markdown-preview h2,
+  .markdown-preview h3,
+  .markdown-preview h4,
+  .markdown-preview h5,
+  .markdown-preview h6 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}
+

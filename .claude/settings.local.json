@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs -I {} sh -c 'echo \"\"\"\"=== {} ===\"\"\"\" && ls -la {}')",
+      "Bash(xargs:*)",
+      "Bash(find:*)"
+    ]
+  }
+}

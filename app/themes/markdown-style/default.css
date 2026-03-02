@@ -1,0 +1,346 @@
+/**
+ * default：经典 MD 主题，作为所有 Markdown 预览的基础样式
+ * 使用 var(--md-primary-color) 作为主题色，可用主题色变量覆盖
+ */
+.markdown-preview {
+  --md-primary-color: hsl(var(--primary));
+  --md-font-size: 1rem;
+  --blockquote-background: rgba(0, 0, 0, 0.03);
+  /* 与页面全局保持一致的正文字体，用于预览与复制到公众号 */
+  --md-font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: var(--md-font-family);
+}
+
+/* ==================== 一级标题 ==================== */
+.markdown-preview h1 {
+  display: table;
+  padding: 0 1em;
+  border-bottom: 2px solid var(--md-primary-color);
+  margin: 2em auto 1em;
+  color: hsl(var(--foreground));
+  font-size: calc(var(--md-font-size) * 1.2);
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ==================== 二级标题 ==================== */
+.markdown-preview h2 {
+  display: table;
+  padding: 0 0.2em;
+  margin: 2em auto;
+  color: hsl(var(--primary-foreground));
+  background: var(--md-primary-color);
+  font-size: calc(var(--md-font-size) * 1.2);
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ==================== 三级标题 ==================== */
+.markdown-preview h3 {
+  padding-left: 8px;
+  border-left: 3px solid var(--md-primary-color);
+  margin: 2em 8px 0.75em 0;
+  color: hsl(var(--foreground));
+  font-size: calc(var(--md-font-size) * 1.1);
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* ==================== 四级标题 ==================== */
+.markdown-preview h4 {
+  margin: 2em 8px 0.5em;
+  color: var(--md-primary-color);
+  font-size: var(--md-font-size);
+  font-weight: bold;
+}
+
+/* ==================== 五级标题 ==================== */
+.markdown-preview h5 {
+  margin: 1.5em 8px 0.5em;
+  color: var(--md-primary-color);
+  font-size: var(--md-font-size);
+  font-weight: bold;
+}
+
+/* ==================== 六级标题 ==================== */
+.markdown-preview h6 {
+  margin: 1.5em 8px 0.5em;
+  font-size: var(--md-font-size);
+  color: var(--md-primary-color);
+}
+
+/* ==================== 段落 ==================== */
+.markdown-preview p {
+  margin: 1.5em 8px;
+  letter-spacing: 0.1em;
+  color: hsl(var(--foreground));
+}
+
+/* ==================== 引用块 ==================== */
+.markdown-preview blockquote {
+  font-style: normal;
+  padding: 1em;
+  border-left: 4px solid var(--md-primary-color);
+  border-radius: 6px;
+  color: hsl(var(--foreground));
+  background: var(--blockquote-background);
+  margin-bottom: 1em;
+}
+
+.markdown-preview blockquote > p {
+  display: block;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  color: hsl(var(--foreground));
+  margin: 0;
+}
+
+/* ==================== GFM 警告块 ==================== */
+.markdown-preview .alert-title-note,
+.markdown-preview .alert-title-tip,
+.markdown-preview .alert-title-info,
+.markdown-preview .alert-title-important,
+.markdown-preview .alert-title-warning,
+.markdown-preview .alert-title-caution,
+.markdown-preview .alert-title-abstract,
+.markdown-preview .alert-title-summary,
+.markdown-preview .alert-title-tldr,
+.markdown-preview .alert-title-todo,
+.markdown-preview .alert-title-success,
+.markdown-preview .alert-title-done,
+.markdown-preview .alert-title-question,
+.markdown-preview .alert-title-help,
+.markdown-preview .alert-title-faq,
+.markdown-preview .alert-title-failure,
+.markdown-preview .alert-title-fail,
+.markdown-preview .alert-title-missing,
+.markdown-preview .alert-title-danger,
+.markdown-preview .alert-title-error,
+.markdown-preview .alert-title-bug,
+.markdown-preview .alert-title-example,
+.markdown-preview .alert-title-quote,
+.markdown-preview .alert-title-cite {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-preview .alert-title-note { color: #478be6; }
+.markdown-preview .alert-title-tip { color: #57ab5a; }
+.markdown-preview .alert-title-info { color: #93c5fd; }
+.markdown-preview .alert-title-important { color: #986ee2; }
+.markdown-preview .alert-title-warning { color: #c69026; }
+.markdown-preview .alert-title-caution { color: #e5534b; }
+.markdown-preview .alert-title-abstract,
+.markdown-preview .alert-title-summary,
+.markdown-preview .alert-title-tldr { color: #00bfff; }
+.markdown-preview .alert-title-todo { color: #478be6; }
+.markdown-preview .alert-title-success,
+.markdown-preview .alert-title-done { color: #57ab5a; }
+.markdown-preview .alert-title-question,
+.markdown-preview .alert-title-help,
+.markdown-preview .alert-title-faq { color: #c69026; }
+.markdown-preview .alert-title-failure,
+.markdown-preview .alert-title-fail,
+.markdown-preview .alert-title-missing { color: #e5534b; }
+.markdown-preview .alert-title-danger,
+.markdown-preview .alert-title-error { color: #e5534b; }
+.markdown-preview .alert-title-bug { color: #e5534b; }
+.markdown-preview .alert-title-example { color: #986ee2; }
+.markdown-preview .alert-title-quote,
+.markdown-preview .alert-title-cite { color: #9ca3af; }
+
+.markdown-preview .alert-icon-note { fill: #478be6; }
+.markdown-preview .alert-icon-tip { fill: #57ab5a; }
+.markdown-preview .alert-icon-info { fill: #93c5fd; }
+.markdown-preview .alert-icon-important { fill: #986ee2; }
+.markdown-preview .alert-icon-warning { fill: #c69026; }
+.markdown-preview .alert-icon-caution { fill: #e5534b; }
+.markdown-preview .alert-icon-abstract,
+.markdown-preview .alert-icon-summary,
+.markdown-preview .alert-icon-tldr { fill: #00bfff; }
+.markdown-preview .alert-icon-todo { fill: #478be6; }
+.markdown-preview .alert-icon-success,
+.markdown-preview .alert-icon-done { fill: #57ab5a; }
+.markdown-preview .alert-icon-question,
+.markdown-preview .alert-icon-help,
+.markdown-preview .alert-icon-faq { fill: #c69026; }
+.markdown-preview .alert-icon-failure,
+.markdown-preview .alert-icon-fail,
+.markdown-preview .alert-icon-missing { fill: #e5534b; }
+.markdown-preview .alert-icon-danger,
+.markdown-preview .alert-icon-error { fill: #e5534b; }
+.markdown-preview .alert-icon-bug { fill: #e5534b; }
+.markdown-preview .alert-icon-example { fill: #986ee2; }
+.markdown-preview .alert-icon-quote,
+.markdown-preview .alert-icon-cite { fill: #9ca3af; }
+
+/* ==================== 代码块 ==================== */
+.markdown-preview pre {
+  font-size: 90%;
+  overflow-x: auto;
+  border-radius: 8px;
+  padding: 0;
+  line-height: 1.5;
+  margin: 10px 8px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.markdown-preview pre code,
+.markdown-preview pre code.hljs {
+  display: block;
+  padding: 0.5em 1em 1em;
+  overflow-x: auto;
+  text-indent: 0;
+  color: inherit;
+  background: none;
+  white-space: pre;
+  margin: 0;
+}
+
+/* ==================== 图片 ==================== */
+.markdown-preview img {
+  display: block;
+  max-width: 100%;
+  margin: 0.1em auto 0.5em;
+  border-radius: 4px;
+}
+
+/* ==================== 列表 ==================== */
+.markdown-preview ol {
+  padding-left: 1em;
+  margin-left: 0;
+  color: hsl(var(--foreground));
+}
+
+.markdown-preview ul {
+  list-style: circle;
+  padding-left: 1em;
+  margin-left: 0;
+  color: hsl(var(--foreground));
+}
+
+.markdown-preview li {
+  display: block;
+  margin: 0.2em 8px;
+  color: hsl(var(--foreground));
+}
+
+/* ==================== 脚注 ==================== */
+.markdown-preview p.footnotes {
+  margin: 0.5em 8px;
+  font-size: 80%;
+  color: hsl(var(--foreground));
+}
+
+/* ==================== 图表 ==================== */
+.markdown-preview figure {
+  margin: 1.5em 8px;
+  color: hsl(var(--foreground));
+}
+
+.markdown-preview figcaption,
+.markdown-preview .md-figcaption {
+  text-align: center;
+  color: #888;
+  font-size: 0.8em;
+}
+
+/* ==================== 分隔线 ==================== */
+.markdown-preview hr {
+  border-style: solid;
+  border-width: 2px 0 0;
+  border-color: rgba(0, 0, 0, 0.1);
+  transform-origin: 0 0;
+  transform: scale(1, 0.5);
+  height: 0.4em;
+  margin: 1.5em 0;
+}
+
+/* ==================== 行内代码 ==================== */
+.markdown-preview :not(pre) > code {
+  font-size: 90%;
+  color: #d14;
+  background: rgba(27, 31, 35, 0.05);
+  padding: 3px 5px;
+  border-radius: 4px;
+}
+
+/* ==================== 强调 ==================== */
+.markdown-preview em {
+  font-style: italic;
+  font-size: inherit;
+}
+
+/* ==================== 链接 ==================== */
+.markdown-preview a {
+  color: #576b95;
+  text-decoration: none;
+}
+
+/* ==================== 粗体 ==================== */
+.markdown-preview strong {
+  color: var(--md-primary-color);
+  font-weight: bold;
+  font-size: inherit;
+}
+
+/* ==================== 表格 ==================== */
+.markdown-preview table {
+  color: hsl(var(--foreground));
+}
+
+.markdown-preview thead {
+  font-weight: bold;
+  color: hsl(var(--foreground));
+}
+
+.markdown-preview th {
+  border: 1px solid #dfdfdf;
+  padding: 0.25em 0.5em;
+  color: hsl(var(--foreground));
+  word-break: keep-all;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.markdown-preview td {
+  border: 1px solid #dfdfdf;
+  padding: 0.25em 0.5em;
+  color: hsl(var(--foreground));
+  word-break: keep-all;
+}
+
+/* ==================== KaTeX 公式 ==================== */
+.markdown-preview .katex-inline {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.markdown-preview .katex-block {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.5em 0;
+  text-align: center;
+}
+
+/* ==================== 标记高亮 ==================== */
+.markdown-preview .markup-highlight {
+  background-color: var(--md-primary-color);
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.markdown-preview .markup-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--md-primary-color);
+}
+
+.markdown-preview .markup-wavyline {
+  text-decoration: underline wavy;
+  text-decoration-color: var(--md-primary-color);
+  text-decoration-thickness: 2px;
+}
+

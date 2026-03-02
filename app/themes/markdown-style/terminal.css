@@ -1,0 +1,14 @@
+/* terminal：深色背景 + 经典绿色 + 等宽字体 */
+.markdown-preview[data-theme="terminal"] {
+  --background: #0d1117;
+  --foreground: #00ff41;
+  --muted: #1f2937;
+  --muted-foreground: #00ff41;
+  --border: #1f2937;
+  --primary: #00ff41;
+  --primary-foreground: #0d1117;
+  --card: #161b22;
+  --card-foreground: #00ff41;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
