@@ -28,6 +28,8 @@
     "remark-gfm": "^4.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.49.0",
     "tailwind-merge": "^3.5.0",
     "unified": "^11.0.5"
   },
