@@ -42,3 +42,6 @@ next-env.d.ts
 
 # bm.md - separate TanStack Start project
 /bm.md
+
+# Claude Code local settings
+.claude/settings.local.json

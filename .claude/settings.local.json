@@ -3,7 +3,23 @@
     "allow": [
       "Bash(xargs -I {} sh -c 'echo \"\"\"\"=== {} ===\"\"\"\" && ls -la {}')",
       "Bash(xargs:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "WebSearch",
+      "Bash(wc:*)",
+      "Bash(ls:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout 10 npm run dev:*)",
+      "Bash(npm run lint:*)",
+      "Bash(bun run scripts/scope-code-themes.ts:*)",
+      "Bash(npm run dev)",
+      "Bash(curl -I http://localhost:3000/themes/code-theme/atom-one-dark.css)",
+      "Bash(curl -s http://localhost:3000/themes/code-theme/atom-one-dark.css)",
+      "Bash(grep -l \"^\\\\s*\\\\.markdown-preview.*pre\\\\|^\\\\s*\\\\.markdown-preview.*code\\\\s*{\" app/themes/markdown-style/*.css)",
+      "Bash(git add -A)",
+      "Bash(git restore --staged .claude/settings.local.json)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ]
   }
 }
