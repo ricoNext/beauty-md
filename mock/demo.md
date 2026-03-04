@@ -1,309 +1,153 @@
-# 02 AI 基础调用实现：从原理到代码实践 ​
+# 本地主机（localhost）的最后一年
 
-> 在上篇文章中，我们介绍了 AI 技术从基础调用到自主智能体的应用层演进，后续会基于这个脉络着眼各阶段的关键技术实现，和技术层面的落地。
+![](https://neptune-ipc.oss-cn-shenzhen.aliyuncs.com/img/20260303135854836.png)
 
-本文介绍基础 LLM 调用的基本原理和代码实现，包括 Prompt 设计、参数配置、Stream 传输、格式化内容等。 本文涉及的代码存放在 [github](https://github.com/starlee1992/rico/tree/main/apps/docs/articles/AI/02)
+> 后台代理（Background Agents）大规模可以并行工作，但一台笔记本电脑根本装不下那么多代理，需要标准化、可重现的云开发环境。2026 可能是 localhost（本地开发）的终结之年。 
 
-## 模型基础调用实现
+Johannes Landgraf 在 Ona 官网发表了这篇文章，讲述了在 2026 年，随着后台代理（Background Agents）的普及，本地开发环境（localhost）已经无法满足需求，需要标准化、可重现的云开发环境，这将导致本地开发环境（localhost）的终结。
 
-首先看模型基础调用的应用架构图：
+> [The last year of localhost 原文](https://ona.com/stories/the-last-year-of-localhost?utm_source=background-agents&utm_medium=microsite&utm_campaign=background-agent-manual&_gl=1*1ins1zy*_gcl_au*MTk2MDY2MTY4LjE3NzI1MDExNjA.)
 
-![](https://neptune-ipc.oss-cn-shenzhen.aliyuncs.com/img/20250825151704119.png)
+------
 
-我们需要一个客户端向服务层传输请求，服务层会调用模型层的 API，LLM 会返回结果，服务层再将结果返回给客户端。
+【译文开始】
 
-服务端这里选择使用 node 实现，为了方便客户端搭建，这里使用 NextJs 举例。 对接的模型使用 doubao 大模型。
+![](https://neptune-ipc.oss-cn-shenzhen.aliyuncs.com/img/20260303134751084.png)
 
-由于市面上大部分大模型的 API 调用都兼容 OpenAI API 的格式，这里选用 OpenAI 的 node SDK 访问大模型服务。
+**背景代理在软件流水线上嗡嗡作响，它们无法在一台笔记本电脑上运行。**
 
-openai 实例初始化需要传入 apiKey 和 baseURL，apiKey 和 baseURL 从使用的大模型平台获取。
+Stripe 的 Minions 每周合并超过一千个由代理撰写的 Pull Request。  
+Ramp 的背景代理占所有合并 PR 的 57%。  
+上周，我们在 main 分支合并的 PR 中，有 88.5% 是由 Ona 撰写的。
 
-为了安全起见，不建议将 apiKey 直接写在代码中，而是从环境变量中获取。 在项目中，我们可以在 `env.local` 文件中定义环境变量，以 doubao 的 api 对接为例，在 env 中定义 doubao 的 apikey 和 baseUrl
+这些团队的共同点并不是什么特殊的代理框架或更聪明的模型。他们早在几年前就标准化了开发环境。Stripe 在 GPT-3 出现之前就已经有了基于云的开发盒子（devboxes）。这些投入早在代理时代到来之前多年就已完成，现在正在获得复利回报。
 
-```bash
-DOUBAO_API_KEY=xxxxx
-DOUBAO_API_BASE_URL=https://ark.cn-beijing.volces.com/api/v3/
-```
+![](https://neptune-ipc.oss-cn-shenzhen.aliyuncs.com/img/20260303143257768.png)
 
-安装 openai 的 node SDK：
+真正阻碍你团队的，正是一直以来都存在缺陷的东西：你的开发环境。
 
-```bash
-pnpm add openai
-```
+## 本地主机的终结
 
-初始化 openai 实例：
+五年前，我们创办了 Gitpod（现为 Ona），目标是将软件开发迁移到云端，就像 Figma 对设计领域所做的那样。我们要解决的是那个经典问题：“在我机器上能跑”。开发环境与生产环境、CI 环境、彼此之间逐渐脱节。每个团队的配置都略有不同。新人入职可能需要几天甚至几个月。调试本地环境问题有时会成为平台工程师的全职工作。我们相信答案是云开发环境，因此一遍又一遍地宣扬这个观点。
 
-```typescript
-import OpenAI from "openai";
+2020–2022 年间，似乎我们是对的。Swyx 表示赞同，但 Hacker News 不买账。后来我们意识到，只是提出得太早了。
 
-const openai = new OpenAI({
-  baseURL: process.env.DOUBAO_API_BASE_URL,
-  apiKey: process.env.DOUBAO_API_KEY,
-});
-```
+“云开发环境之年”变成了新的“Linux 桌面之年”：理论上永远正确，实践中永远不到来。
 
-创建对话：
+云开发环境确实解决了真实问题：环境漂移、入职耗时、可重现性。但对大多数开发者来说，本地环境已经“够用”。苹果 M1 芯片缩小了性能差距，“就用我自己的笔记本吧”这种吸引力很强：零延迟、多年积累的个性化配置、感觉像身份认同的一部分。云开发环境的理由很充分，但从来不够紧急，无法强迫大家迁移。
 
-```typescript
-export async function POST(request: Request) {
-  const completion = await openai.chat.completions.create({
-    model: "doubao-1-5-pro-32k-250115",
-    messages: [{ role: "system", content: "You are a helpful assistant." }],
-  });
-  return new Response(completion.choices[0].message.content);
-}
-```
+和很多事情一样，AI 改变了这一切。成群的代理在软件流水线上并行工作，但它们塞不进一台笔记本电脑。每个代理都需要独立的、完整配置的环境，能访问内部服务和生产级工具链。开发终于要迁移到云上了——原因却是当初没人预料到的。
 
-这里 create 方法接收两个参数：model 和 messages。
+![](https://neptune-ipc.oss-cn-shenzhen.aliyuncs.com/img/20260303142803071.png)
 
-- model 是模型名称，这里选择 doubao-1-5-pro-32k-250115。 也可以选择其他开通的模型 [模型列表](https://console.volcengine.com/ark/region:ark+cn-beijing/openManagement?LLM=%7B%7D&OpenTokenDrawer=false)
+这一次是真的：延迟四年之后，**localhost 真的要结束了**。
 
-- messages 是对话历史，也就是常听到的 Prompt。 关于 Prompt 下面会做详细的解析， 这里需要知道对于 Prompt 需要传入 role 和 content 两个参数。
+## 云开发环境是代理的前提条件
 
-客户端调用对话：
+看看那些走在背景代理浪潮前列的公司，回溯它们的开发基础设施历史。
 
-当点击按钮时，调用服务端的 API，服务端会返回模型的结果。
+Stripe 多年以前就构建了远程开发环境。正如 Soam Vasani 所描述的，每位 Stripe 工程师都获得一台 EC2 devbox，包含 Sorbet 服务器、完整的 monorepo 检出，以及从笔记本电脑 rsync 同步。标准化、可重现、集中管理。当 Stripe 开发 Minions（他们的单次编码代理）时，根本不需要考虑代理运行在哪里。答案早已存在：就是每位工程师都在用的同一个环境。相同的依赖、相同的测试套件、相同的凭证和网络访问。这就是他们能在几个月内从原型发展到每周合并数千 PR 的原因。代理基础设施只是多年环境投入之上的一层薄薄外壳。
 
-```typescript
-export default function Home() {
-  const [data, setData] = useState("");
+Ramp 走的是相似路径，在标准化的环境上构建了自己的背景代理，并在整个代码库上运行。模式相同：先环境标准化，再叠加代理。
 
-  const handleClick = async () => {
-    const res = await fetch("/api/chat", {
-      method: "POST",
-    });
-    const data = await res.text();
-    setData(data);
-  };
-  return (
-    <div>
-      <Button onClick={handleClick}>点击我</Button>
-      <div>{data}</div>
-    </div>
-  );
-}
-```
+反过来也同样有启发。我们接触过一些团队，他们已经把代理接入 issue tracker，能自动分配任务、生成代码。代理能读取代码库，甚至编译。但它无法运行应用、针对真实服务执行测试、验证自己的工作。它生成的代码看起来正确，却从未被测试过。
 
-#### messages 参数讲解
+从"生成 diff"到"打开一个可合并的 PR"之间的鸿沟，就是开发环境。
 
-messages 参数是一个数组，每个元素都是一个对象，对象包含 role 和 content 两个参数， 每个对象也就是一个 Prompt 指令。
+![](https://neptune-ipc.oss-cn-shenzhen.aliyuncs.com/img/20260303143509559.png)
 
-Prompt 就像是传统 http 协议中传递给服务端的参数，http server 会根据参数返回不同的结果，LLM 也会根据传入的 prompt 内容返回不同的结果。 但不同与 http server 的是，http server 会定义传入参数，对于非法参数 http server 并不会接受处理，但 LLM 什么参数都会接收和处理，所以为了提升 LLM 处理的准确性，需要向 LLM 传递更加明确的意图指令参数。
+跑得最快的公司在代理之前就已经有了标准化的、可重现的环境层。其他人正在发现，他们必须先构建这个层。做对了，这是一项重大基础设施工程；还没到大规模部署第一个代理，更别提后续的日常运维了。
 
-所以通用大模型对于 Prompt 参数首先要求传入 role 和 该 role 对应的 content， 也就是和大模型进行对话时， 需要告知大模型的角色定位和角色定位的描述和要求。
+## 为什么 git worktrees 会崩溃，而 localhost 无法满足代理需求
 
-同时为了提升 role 的灵活性， 大模型也支持传入多组 role 和 content：
+如果你是一家 monorepo 公司的开发者生产力工程师，被急躁的 CEO 要求达到 Ramp 那样的背景代理合并 PR 占比，你很可能先从 git worktrees 开始。你想并行跑三个代理，于是创建三个 worktree，每个有自己的分支、检出和代理。
 
-- system 角色： 系统角色，设定模型的行为边界、身份定位和全局规则。
-- user 角色： 用户角色，传递用户的具体需求或问题，触发模型生成回复。
-- assistant 角色： 助手角色，承载模型的响应内容，维持对话连贯性。
+在 monorepo 里，这立刻就崩了。
 
-一般我们创建一个新的对话的时候， 应该先传递 system 角色， 系统角色设定模型的行为边界、身份定位和全局规则。后续的问答角色是 user 角色， 而对应的 LLM 的角色是 assistant。
+每个 worktree 需要独立的依赖安装、独立运行的服务、独立的数据库实例。文件系统是共享的，但运行时状态不是。你会遇到端口冲突、共享缓存互相污染，机器直接卡死。我们经常听到团队反馈：三个 worktree 同时跑，笔记本直接没法用。
 
-关于 Prompt 的设计是一个分场景的工程化问题， 后续的文章中会继续探究。下面回到 LLM 的调用上，继续补齐基础通信的能力。
+monorepo 的环境设置进一步放大了问题。它不是“clone 然后 run”那么简单。要安装 15 个工具、配置 3 个数据库、填充测试数据、启动 8 个服务、等待编译。在一些公司，从零搭建本地开发环境要好几天。一次就很痛苦，更不用说在一台笔记本上并行跑五次了。
 
-#### 多轮对话实现
+此外，还有组织层面的问题。大多数公司对运行代理没有标准化方案。个别开发者在用不同工具、不同配置、不同绕法实验。有些在 CI 里跑，有些用本地 worktrees，有些用 GitHub Actions。没有共享基础，每支团队都在独立重新发现同样的限制，公司整体拿不到董事会要求的生产力提升。
 
-在上面的代码中，我们只传递了一个固定的 Prompt 指令，大模型会根据这个指令返回结果。但在实际场景中，我们需要输入并持续传递多轮对话指令，我们来看一下这部分的实现。
+代理需要很多环境同时做很多事。这是一种完全不同的负载形态，再大的本地硬件也解决不了。你买不到一台足够大的笔记本，能并行跑五个完整的 monorepo 环境。
 
-LLM 接受 prompt 指令是支持多条 message 的， 当多轮对话时， 需要把把上次的对话历史也传递给 LLM， 否则 LLM 会根据当前的指令返回结果，而不是根据对话历史返回结果。
+## 我们构建了什么（以及一路上犯了哪些错）
 
-为了实现多轮对话， 我们需要在服务端维护一个对话历史的数组， 每次客户端传递指令时， 把对话历史也传递给 LLM。
+我们花了五年时间学习一个云开发环境需要具备什么，才能同时服务人类工程师和自治代理。有些教训来自做对的事，更多来自做错的事。（比如不要依赖 Kubernetes。）
 
-```typescript
-export type Message = {
-  role: "user" | "assistant" | "system";
-  content: string;
-  index: number;
-};
+但我不打算一一列举哪些基础设施原语失败了（我们已经在别处写过），我想聚焦在真正有效的东西上。一个云开发环境要同时服务人类工程师和自治代理，需要哪些属性？
 
-const messages: Message[] = [];
+![](https://neptune-ipc.oss-cn-shenzhen.aliyuncs.com/img/20260303143752874.png)
 
-const openai = new OpenAI({
-  baseURL: process.env.DOUBAO_API_BASE_URL,
-  apiKey: process.env.DOUBAO_API_KEY,
-});
+### 隔离：用 VM，而不是容器
 
-// 非流式问答
-export async function POST(request: Request) {
-  const { prompt } = await request.json();
+代理会远程执行任意代码，所以隔离边界非常重要。容器与宿主机共享内核，一旦容器逃逸，攻击者就能访问同一台机器上的所有其他容器：其他代理、其他用户、其他客户。对人类开发者来说，这个风险可以接受，因为开发者是可信的。对代理来说不行。
 
-  messages.push({
-    role: "user",
-    content: prompt,
-    index: -1,
-  });
+正确的原语是虚拟机。每个环境拥有独立的内核、内存空间和网络栈。在 VM 内的被攻破代理无法触及任何外部东西。在 Ona，每个环境都运行在独立的 VM 中。这是当租户是执行不可信代码的自治代理时，唯一能守住的隔离边界。
 
-  const completion = await openai.chat.completions.create({
-    model: "doubao-1-5-pro-32k-250115",
-    messages,
-  });
+### 声明式、可重现的环境定义
 
-  messages.push({
-    ...completion.choices[0].message,
-    index: completion.choices[0].index as number,
-  } as Message);
+**Dev Container 规范**是这个故事里被低估的英雄。一个 `devcontainer.json` 文件编码了环境需要的一切：基础镜像、语言运行时、工具版本、编辑器扩展、环境变量、端口转发、生命周期钩子。有了这个文件，任何机器——人类的笔记本、云 VM 或代理沙箱——都能得到完全相同的环境。
 
-  return new Response(JSON.stringify(messages));
-}
-```
+Dev Containers 有个营销问题。大多数工程师以为它只是“VS Code 的远程容器功能”。实际上这是一个开放标准，在配置即代码层面解决了可重现性，是行业最接近通用的环境定义格式的东西。
 
-通过使用数组来维护对话历史， 我们可以实现多轮对话。
+我们在 Gitpod 初期创建了 `.gitpod.yml`。把规范以公司命名是个错误。当微软基于我们 `.gitpod.yml` 的核心思想推出开放标准的 Dev Container 规范时，我们其实很开心。这种验证很重要，因此在 2023 年底我们从头重写 Gitpod 架构、转向 AI-first 时，把 Dev Containers 作为基础。行业需要一个厂商中立的方式来定义“这个项目运行需要什么”，Dev Containers 就是那个方式。
 
-对于需要新建一轮对话的场景， 我们需要清空对话历史数组。
-
-```typescript
-// 清空对话
-export async function DELETE(request: Request) {
-  messages.length = 0;
-  return new Response(JSON.stringify({ message: "对话已清空" }));
-}
-```
-
-> 在真实的项目中历史会根据业务要求存放到数据库中，并且随着对话轮数的增加， 传递给 LLM 的 token 不断增多， 除了浪费 token 的成本， 还会影响 LLM 的处理速度， 在项目中需要截断或重组简化历史记录， 后续的文章中会详细讨论。
-
-#### 使用流式传输， 提升用户体验
-
-上面的实现是同步调用 LLM，等待 LLM 返回结果后，才会返回给客户端。这会导致用户等待时间过长， 影响用户体验。
-
-openai SDK 支持以数据流的方式把结果返回给客户端， 这样对于 LLM 的回答用户感受到的就是持续的输出。
-
-在 next 中， 我们可以使用 node 原生的 ReadableStream 来实现流式传输。
-
-首先初始化 请求体和 ReadableStream 实例：
-
-```typescript
-// 流式问答
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const prompt = searchParams.get("prompt");
-
-  messages.push({
-    role: "user",
-    content: prompt as string,
-    index: Date.now(),
-  });
-
-  const stream = new ReadableStream({
-    async start(controller) {},
-  });
-
-  return new Response(stream, {
-    headers: {
-      "Content-Type": "text/event-stream",
-      "Cache-Control": "no-cache",
-      Connection: "keep-alive",
-    },
-  });
-}
-```
-
-ReadableStream 的构造函数中接受 start 参数， 是在实例构造时就会立即执行的处理流传输的方法， 而 start 定义的 controller 参数， 用来控制流的状态和内部队列。
-
-在 start 函数中， 我们可以调用 openai SDK 来获取 LLM 的回复， 并把回复内容写入到流中。
-
-```typescript
-const stream = new ReadableStream({
-  async start(controller) {
-    const completion = await openai.chat.completions.create({
-      model: "doubao-1-5-pro-32k-250115",
-      messages,
-      stream: true,
-    });
-    let res = "";
-
-    messages.push({
-      role: "assistant",
-      content: res,
-      index: Date.now(),
-    });
-
-    for await (const event of completion) {
-      const content = event.choices[0].delta.content || "";
-      res += content;
-
-      messages[messages.length - 1].content = res;
-
-      // 发送符合 SSE 标准的消息格式
-      controller.enqueue(`data: ${JSON.stringify(messages)}\n\n`);
-    }
-
-    // 通知前端对话结束
-    controller.enqueue("data: close\n\n");
-    controller.close();
-  },
-});
-```
-
-前端也需要使用处理流的方式调用 API， 才能正常接收流数据。
-
-```typescript
-const handleClick = async (e: React.FormEvent) => {
-  setLoading(true);
-
-  // 创建新的 EventSource，对 prompt 进行 URL 编码
-  const eventSource = new EventSource(
-    `/api/streamingChat?prompt=${encodeURIComponent(prompt)}`
-  );
-
-  eventSource.onmessage = (event) => {
-    // 直接处理文本数据，不进行 JSON 解析
-    if (event.data === "close") {
-      setLoading(false);
-      eventSource.close();
-      setPrompt("");
-    } else if (event.data) {
-      // 处理流式内容更新
-      setData(JSON.parse(event.data));
-    }
-  };
-  // 处理错误事件
-  eventSource.onerror = (error) => {
-    console.error("EventSource error:", error);
-    setLoading(false);
-    eventSource.close();
-  };
-};
-```
-
-这样流式传输的多轮对话也实现了，下面是实现的效果：
-![](https://neptune-ipc.oss-cn-shenzhen.aliyuncs.com/img/20250829113951_rec_.gif)
-
-#### 格式化返回数据
-
-默认情况下大模型返回的内容格式是 markdown 格式的， 前端展示时需要对 markdown 格式进行解析。
-
-借助 `remark` 可以把 markdown 格式的内容解析成 html 格式的内容。
-
-安装相关依赖
-
-```bash
-npm install --save rehype-stringify remark-gfm remark-parse remark-rehype unified
-```
-
-封装一个组件， 用来格式化 markdown 格式的内容。
-
-```typescript
-import rehypeStringify from "rehype-stringify";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import { unified } from "unified";
-
-const processor = unified()
-  .use(remarkParse)
-  .use(remarkRehype, { allowDangerousHtml: true })
-  .use(rehypeStringify);
-
-const MarkdownWrap = ({ children }: { children: string }) => {
-  const html = processor.processSync(children).toString();
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
-};
-
-export default MarkdownWrap;
-```
-
-本文涉及的代码存放在 [github](https://github.com/starlee1992/rico/tree/main/apps/docs/articles/AI/02)
-
-## 总结
-
-在这篇文章中， 我们实现了一个支持多轮对话的基础大模型调用应用。在实际的项目中，对于历史对话的维护会存放在数据库中，同时如果是一个对外提供服务的应用，会结合账号进行对话的维护。
+### 自动化的环境生命周期
+
+光可重现还不够，环境还需要在无人干预的情况下自动完成配置。
+
+在 Ona，我们用 `automations.yaml` 文件解决这个问题，定义两种原语：**services**（数据库、开发服务器、语言服务器等长运行进程）和 **tasks**（依赖安装、代码生成、数据库迁移等一次性设置）。每种都有明确触发器：环境启动时、预构建时或手动触发。代理的环境启动后，会自动安装依赖、启动所有必要服务、填充测试数据，立即就绪接受工作。没有手动步骤。
+
+你需要的是足够可靠、可用于自治操作的干净环境。自动化层把可重现环境变成了自组装环境。
+
+### 连通性和上下文
+
+代理的产出与它能获取的上下文质量成正比。在第三方沙箱里运行的代理只能读你的代码。在你网络内部运行的代理可以读代码、查询数据库、调用内部 API、针对 staging 跑完整测试套件。当这些环境运行在公司自己的云账号里，工程师可以给实例分配一个 IAM 角色，立刻获得所有相关访问权限——无需隧道、无需导出密钥、无需代理 hack。
+
+大多数代理沙箱在这点上直接放弃。他们给你一个别人云上的容器或 microVM，让你自己解决网络问题，结果往往是脆弱、动不动就出问题的方案。
+
+要最大化背景代理的产出，它们需要完整的开发流程：clone、branch、install、build、test、iterate、commit、push。包括 SCM 集成、构建工具链、测试运行器、linter、端到端执行。把“一个带 shell 的容器”升级为真正的“开发环境”，关键就在于这个完整闭环。
+
+在 Ona，环境运行在客户自己的 VPC 内（支持 AWS、GCP，很快支持 Azure），原生网络访问开发者能访问的一切，无需隧道。当代理打开 Pull Request 时，它已经跑过人类工程师会跑的同样测试、linter 和构建流程。我们在[《不要自己构建编码代理沙箱》](https://ona.com/stories/dont-build-a-coding-agent-sandbox)一文中更详细地写过这一点。
+
+### 安全：假设被攻破，在内核层强制执行
+
+代理不是可信用户，也不可能是。任何声称“解决了 prompt injection”的人都在卖不存在的东西。
+
+正确的问题不是“如何防止被攻破”，而是“代理能接触和尝试攻破什么？”
+
+Ona 的安全分两层。第一是凭证：环境获得短期的、限定范围的 token，与组织、项目和用户绑定。第二是内核级强制。我们监控每一个系统调用、文件访问、网络包，以及代理在内核中执行的内容。越狱的代理会撞上操作系统强制执行的墙。通过 policy-as-code，组织可以定义硬约束——“不允许访问公开 S3 bucket”、“不允许写生产数据库”——这些约束完全覆盖代理的自主性。
+
+我们很快会写更多关于代理运行时安全的文章。我很高兴地分享，Falco 的创建者 [Leo](https://github.com/leodido) 和 [Lorenzo](https://github.com/fntlnz) 已经加入 Ona。
+
+## 复利效应
+
+那些早就标准化环境的公司，现在可以并行运行代理、自动化代码审查、一夜清空 backlog、在数百个包上大规模重构。定时代理每天早上 7 点从 issue tracker 领取任务，开会前 PR 已经就绪，然后在会议期间继续处理下一个任务。从 Sentry 等错误监控工具触发的背景代理会自动分诊和修复 bug，无需人工介入，减少噪音和云账单。在 Ona 内部我们也在用这些，工程产能被提升到我们之前无法想象的程度。
+
+能让工程师从第一天就高效工作的那套基础设施，同样也能让代理从第一个任务开始就高效。
+
+![](https://neptune-ipc.oss-cn-shenzhen.aliyuncs.com/img/20260303141441783.png)
+
+影响远不止工程。当开发环境只需一键启动，产品经理、工程经理、设计师也能直接访问代码库。设计师调整间距时，可以启动环境，让代理完成修改并发送 PR，而不是把深陷工作的工程师拉出来处理琐碎修复。支持团队可以直接基于真实源码来回答客户问题。让非技术人员在本地开发环境上上手需要几天的手把手指导，而且一旦停止维护就坏掉。能自我设置的云环境彻底消除了这些问题，打破部门壁垒，加速协作。
+
+## 对你团队的意义
+
+如果你正在评估背景代理，先审计你的开发环境标准化程度：
+
+- 新工程师能否在一键操作下 10 分钟内从零跑到代码？
+- 你能否程序化地启动 10 个完全相同的环境？
+- 环境定义是否已提交到仓库？
+- 环境能否无手动步骤自我设置？
+- 环境能否安全访问所有需要的内部服务？
+- 如果代理被攻破，爆炸半径受什么限制？凭证是短期的、加密绑定的，还是长期密钥躺在环境变量里？
+
+如果以上任一答案为否，你就拿不到你期待的背景代理生产力提升——无论模型能力有多强。
+
+标准化开发流程的投资，会在人类生产力、代理生产力、安全姿态和入职效率上带来复利回报。它是所有其他东西的基础层。
+
+我们五年来一直在构建这个基础设施，因为我们相信软件开发会迁移到云端。
+
+现在，AI 给了我们最终的理由——localhost 的最后一年，已经开始了。
+

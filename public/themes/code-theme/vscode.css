@@ -1,0 +1,69 @@
+.markdown-preview[data-code-theme="vscode"] pre {
+  margin: 1em 0;
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.6
+}
+.markdown-preview[data-code-theme="vscode"] pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #fff
+}
+.markdown-preview[data-code-theme="vscode"] code.hljs {
+  padding: 3px 5px
+}
+.markdown-preview[data-code-theme="vscode"] .hljs {
+  background: #fff;
+  color: #000
+}
+.markdown-preview[data-code-theme="vscode"] .hljs-comment,
+.markdown-preview[data-code-theme="vscode"] .hljs-quote,
+.markdown-preview[data-code-theme="vscode"] .hljs-variable {
+  color: green
+}
+.markdown-preview[data-code-theme="vscode"] .hljs-built_in,
+.markdown-preview[data-code-theme="vscode"] .hljs-keyword,
+.markdown-preview[data-code-theme="vscode"] .hljs-name,
+.markdown-preview[data-code-theme="vscode"] .hljs-selector-tag,
+.markdown-preview[data-code-theme="vscode"] .hljs-tag {
+  color: #00f
+}
+.markdown-preview[data-code-theme="vscode"] .hljs-addition,
+.markdown-preview[data-code-theme="vscode"] .hljs-attribute,
+.markdown-preview[data-code-theme="vscode"] .hljs-literal,
+.markdown-preview[data-code-theme="vscode"] .hljs-section,
+.markdown-preview[data-code-theme="vscode"] .hljs-string,
+.markdown-preview[data-code-theme="vscode"] .hljs-template-tag,
+.markdown-preview[data-code-theme="vscode"] .hljs-template-variable,
+.markdown-preview[data-code-theme="vscode"] .hljs-title,
+.markdown-preview[data-code-theme="vscode"] .hljs-type {
+  color: #a31515
+}
+.markdown-preview[data-code-theme="vscode"] .hljs-deletion,
+.markdown-preview[data-code-theme="vscode"] .hljs-meta,
+.markdown-preview[data-code-theme="vscode"] .hljs-selector-attr,
+.markdown-preview[data-code-theme="vscode"] .hljs-selector-pseudo {
+  color: #2b91af
+}
+.markdown-preview[data-code-theme="vscode"] .hljs-doctag {
+  color: grey
+}
+.markdown-preview[data-code-theme="vscode"] .hljs-attr {
+  color: red
+}
+.markdown-preview[data-code-theme="vscode"] .hljs-bullet,
+.markdown-preview[data-code-theme="vscode"] .hljs-link,
+.markdown-preview[data-code-theme="vscode"] .hljs-symbol {
+  color: #00b0e8
+}
+.markdown-preview[data-code-theme="vscode"] .hljs-emphasis {
+  font-style: italic
+}
+.markdown-preview[data-code-theme="vscode"] .hljs-strong {
+  font-weight: 700
+}

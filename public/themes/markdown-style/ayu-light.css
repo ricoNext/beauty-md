@@ -1,0 +1,644 @@
+/* ============================================
+   Ayu Light - Lapis 设计风格 + Ayu 配色方案
+   融合 Typora Lapis 主题的经典排版美学
+   与 Ayu Light 温暖橙色调配色
+   ============================================ */
+
+/* 配色参考（硬编码自 palette/index.ts）
+   背景: #fcfcfc
+   次要背景: #f8f9fa
+   小组件背景: #fafafa
+   主文字: #5c6166
+   次要文字: #828e9f
+   注释: #787b80
+   强调色: #f29718
+   错误: #e65050
+   成功: #6cbf43
+   警告: #f2a300
+   信息: #55b4d4
+   代码色: #f07171
+   边框: #e6e8eb
+   高亮: #ffe294
+*/
+
+/* 容器 */
+.markdown-preview[data-theme="ayu-light"] {
+  color: #5c6166;
+  background-color: #fcfcfc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 1.5em 1em;
+}
+
+/* ============================================
+   标题 - H2 反白设计，同一色系逐级变淡
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] h1,
+.markdown-preview[data-theme="ayu-light"] h2,
+.markdown-preview[data-theme="ayu-light"] h3,
+.markdown-preview[data-theme="ayu-light"] h4,
+.markdown-preview[data-theme="ayu-light"] h5,
+.markdown-preview[data-theme="ayu-light"] h6 {
+  line-height: 1.35;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+.markdown-preview[data-theme="ayu-light"] h4,
+.markdown-preview[data-theme="ayu-light"] h5,
+.markdown-preview[data-theme="ayu-light"] h6 {
+  font-weight: 500;
+}
+
+/* H1 - 居中，底部橙色边框 */
+.markdown-preview[data-theme="ayu-light"] h1 {
+  font-size: 1.75em;
+  color: #5c6166;
+  text-align: center;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid #f29718;
+}
+
+/* H2 - 反白设计：橙色背景 + 白色文字 */
+.markdown-preview[data-theme="ayu-light"] h2 {
+  font-size: 1.35em;
+  color: #fcfcfc;
+  background-color: #f29718;
+  padding: 2px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0.3em 0;
+}
+
+.markdown-preview[data-theme="ayu-light"] h2 a {
+  color: #fcfcfc;
+}
+
+.markdown-preview[data-theme="ayu-light"] h2 code {
+  background-color: #f29718;
+  color: #fcfcfc;
+}
+
+.markdown-preview[data-theme="ayu-light"] h2 strong {
+  color: #fcfcfc;
+}
+
+/* H3 - 橙色文字 */
+.markdown-preview[data-theme="ayu-light"] h3 {
+  font-size: 1.2em;
+  color: #f29718;
+}
+
+/* H4-H6 - 使用相同的次要色 */
+.markdown-preview[data-theme="ayu-light"] h4,
+.markdown-preview[data-theme="ayu-light"] h5,
+.markdown-preview[data-theme="ayu-light"] h6 {
+  font-size: 1em;
+  color: #828e9f;
+}
+
+.markdown-preview[data-theme="ayu-light"] > h1:first-child,
+.markdown-preview[data-theme="ayu-light"] > h2:first-child,
+.markdown-preview[data-theme="ayu-light"] > h3:first-child,
+.markdown-preview[data-theme="ayu-light"] > h4:first-child,
+.markdown-preview[data-theme="ayu-light"] > h5:first-child,
+.markdown-preview[data-theme="ayu-light"] > h6:first-child {
+  margin-top: 0;
+}
+
+/* ============================================
+   段落
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] p {
+  margin-bottom: 1em;
+  line-height: 1.8;
+}
+
+.markdown-preview[data-theme="ayu-light"] p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   行内文本样式
+   ============================================ */
+
+/* 加粗 - 使用橙色强调 */
+.markdown-preview[data-theme="ayu-light"] strong,
+.markdown-preview[data-theme="ayu-light"] b {
+  font-weight: 600;
+  color: #f29718;
+}
+
+.markdown-preview[data-theme="ayu-light"] em,
+.markdown-preview[data-theme="ayu-light"] i {
+  font-style: italic;
+}
+
+.markdown-preview[data-theme="ayu-light"] del,
+.markdown-preview[data-theme="ayu-light"] s,
+.markdown-preview[data-theme="ayu-light"] strike {
+  color: #828e9f;
+  text-decoration: line-through;
+}
+
+.markdown-preview[data-theme="ayu-light"] mark {
+  background-color: #ffe294;
+  color: #5c6166;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.markdown-preview[data-theme="ayu-light"] small {
+  font-size: 0.875em;
+  color: #828e9f;
+}
+
+.markdown-preview[data-theme="ayu-light"] sup,
+.markdown-preview[data-theme="ayu-light"] sub {
+  font-size: 0.75em;
+  line-height: 0;
+}
+
+.markdown-preview[data-theme="ayu-light"] sup {
+  vertical-align: super;
+}
+
+.markdown-preview[data-theme="ayu-light"] sub {
+  vertical-align: sub;
+}
+
+.markdown-preview[data-theme="ayu-light"] ins {
+  background-color: rgba(108, 191, 67, 0.15);
+  text-decoration: none;
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+.markdown-preview[data-theme="ayu-light"] q {
+  quotes: '"' '"' '' ' ' '';
+  color: #5c6166;
+}
+
+.markdown-preview[data-theme="ayu-light"] q::before {
+  content: open-quote;
+  color: #f29718;
+}
+
+.markdown-preview[data-theme="ayu-light"] q::after {
+  content: close-quote;
+  color: #f29718;
+}
+
+.markdown-preview[data-theme="ayu-light"] var {
+  font-style: italic;
+  color: #f07171;
+}
+
+.markdown-preview[data-theme="ayu-light"] samp,
+.markdown-preview[data-theme="ayu-light"] tt {
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.85em;
+  background-color: #f8f9fa;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+.markdown-preview[data-theme="ayu-light"] abbr[title] {
+  border-bottom: 1px dotted #828e9f;
+  cursor: help;
+  text-decoration: none;
+}
+
+/* ============================================
+   链接 - 橙色带下划线（Lapis 风格）
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] a {
+  color: #f29718;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.markdown-preview[data-theme="ayu-light"] a:hover {
+  color: #ff7e33;
+}
+
+/* ============================================
+   Ruby 注音
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] ruby {
+  ruby-align: center;
+}
+
+.markdown-preview[data-theme="ayu-light"] rt {
+  font-size: 0.5em;
+  color: #828e9f;
+}
+
+.markdown-preview[data-theme="ayu-light"] rp {
+  color: #828e9f;
+}
+
+/* ============================================
+   列表
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] ul,
+.markdown-preview[data-theme="ayu-light"] ol {
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+
+.markdown-preview[data-theme="ayu-light"] ul {
+  list-style-type: disc;
+}
+
+.markdown-preview[data-theme="ayu-light"] ol {
+  list-style-type: decimal;
+}
+
+.markdown-preview[data-theme="ayu-light"] li {
+  margin-bottom: 0.4em;
+  line-height: 1.7;
+}
+
+.markdown-preview[data-theme="ayu-light"] li::marker {
+  font-weight: bold;
+  color: #828e9f;
+}
+
+.markdown-preview[data-theme="ayu-light"] li > ul,
+.markdown-preview[data-theme="ayu-light"] li > ol {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+.markdown-preview[data-theme="ayu-light"] ul ul {
+  list-style-type: circle;
+}
+
+.markdown-preview[data-theme="ayu-light"] ul ul ul {
+  list-style-type: square;
+}
+
+.markdown-preview[data-theme="ayu-light"] ul.contains-task-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.markdown-preview[data-theme="ayu-light"] li.task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4em;
+}
+
+.markdown-preview[data-theme="ayu-light"] input[type='checkbox'] {
+  margin-top: 0.35em;
+  accent-color: #f29718;
+}
+
+/* ============================================
+   引用块 - 橙色左边框 + 浅色背景
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] blockquote {
+  display: block;
+  font-size: 0.95em;
+  overflow: auto;
+  border-left: 3px solid #f29718;
+  padding: 12px 20px;
+  margin: 1em 0;
+  background: #f8f9fa;
+}
+
+.markdown-preview[data-theme="ayu-light"] blockquote p {
+  margin-bottom: 0.5em;
+  line-height: 1.7;
+}
+
+.markdown-preview[data-theme="ayu-light"] blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-preview[data-theme="ayu-light"] blockquote blockquote {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  border-left-color: #e6e8eb;
+}
+
+
+
+/* ============================================
+   表格
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] table {
+  display: table;
+  width: 100%;
+  margin: 1em 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.95em;
+  text-align: left;
+}
+
+.markdown-preview[data-theme="ayu-light"] th,
+.markdown-preview[data-theme="ayu-light"] td {
+  padding: 8px 12px;
+  border: 1px solid #e6e8eb;
+  text-align: left;
+}
+
+.markdown-preview[data-theme="ayu-light"] th {
+  font-weight: bold;
+  color: #f29718;
+  text-align: center;
+  min-width: 6em;
+}
+
+.markdown-preview[data-theme="ayu-light"] tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.markdown-preview[data-theme="ayu-light"] .frontmatter-table {
+  width: auto;
+  margin-bottom: 1.5em;
+  font-size: 0.875em;
+  border: none;
+}
+
+.markdown-preview[data-theme="ayu-light"] .frontmatter-table td {
+  padding: 0.25em 0.75em 0.25em 0;
+  border: none;
+  vertical-align: top;
+  background-color: transparent;
+}
+
+.markdown-preview[data-theme="ayu-light"] .frontmatter-key {
+  font-weight: 600;
+  color: #f29718;
+  white-space: nowrap;
+}
+
+.markdown-preview[data-theme="ayu-light"] .frontmatter-key::after {
+  content: ':';
+}
+
+.markdown-preview[data-theme="ayu-light"] .frontmatter-value {
+  color: #828e9f;
+}
+
+/* ============================================
+   分割线
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] hr {
+  margin: 1.5em 0;
+  border: none;
+  border-top: 2px solid #e6e8eb;
+  border-radius: 2px;
+}
+
+/* ============================================
+   图片与媒体
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1em auto;
+}
+
+.markdown-preview[data-theme="ayu-light"] picture {
+  display: block;
+  margin: 1em 0;
+}
+
+.markdown-preview[data-theme="ayu-light"] picture img {
+  margin: 0;
+}
+
+.markdown-preview[data-theme="ayu-light"] figure {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.markdown-preview[data-theme="ayu-light"] figure img {
+  margin: 0 auto;
+}
+
+.markdown-preview[data-theme="ayu-light"] figcaption {
+  margin-top: 0.5em;
+  font-size: 0.875em;
+  color: #828e9f;
+}
+
+/* ============================================
+   脚注
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] .footnotes {
+  margin-top: 1.5em;
+  padding-top: 0.75em;
+  border-top: 1px solid #e6e8eb;
+  font-size: 0.875em;
+  color: #828e9f;
+}
+
+.markdown-preview[data-theme="ayu-light"] .footnotes ol {
+  padding-left: 1.25em;
+}
+
+.markdown-preview[data-theme="ayu-light"] .footnote-ref {
+  font-size: 0.75em;
+  vertical-align: super;
+  color: #f29718;
+}
+
+.markdown-preview[data-theme="ayu-light"] .footnote-backref,
+.markdown-preview[data-theme="ayu-light"] .data-footnote-backref {
+  color: #f29718;
+  text-decoration: none;
+}
+
+/* ============================================
+   定义列表
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] dl {
+  margin: 1em 0;
+}
+
+.markdown-preview[data-theme="ayu-light"] dt {
+  font-weight: 600;
+  color: #f29718;
+  margin-top: 0.5em;
+}
+
+.markdown-preview[data-theme="ayu-light"] dt:first-child {
+  margin-top: 0;
+}
+
+.markdown-preview[data-theme="ayu-light"] dd {
+  margin-left: 1.25em;
+  margin-top: 0.2em;
+  color: #5c6166;
+}
+
+/* ============================================
+   键盘按键
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] kbd {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.8125em;
+  display: inline-block;
+  padding: 0.15em 0.4em;
+  background-color: #f8f9fa;
+  border: 1px solid #e6e8eb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #e6e8eb;
+  color: #5c6166;
+}
+
+/* ============================================
+   警告框
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert {
+  display: block;
+  overflow: auto;
+  margin: 1em 0;
+  padding: 12px 20px;
+  border-radius: 4px;
+  border-left: 3px solid;
+  background: #f8f9fa;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-bottom: 0.3em;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-note {
+  background-color: rgba(85, 180, 212, 0.06);
+  border-left-color: #55b4d4;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-note .markdown-alert-title {
+  color: #55b4d4;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-tip {
+  background-color: rgba(108, 191, 67, 0.06);
+  border-left-color: #6cbf43;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-tip .markdown-alert-title {
+  color: #6cbf43;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-important {
+  background-color: rgba(163, 122, 204, 0.06);
+  border-left-color: #a37acc;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-important .markdown-alert-title {
+  color: #a37acc;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-warning {
+  background-color: rgba(242, 163, 0, 0.06);
+  border-left-color: #f2a300;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-warning .markdown-alert-title {
+  color: #f2a300;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-caution {
+  background-color: rgba(230, 80, 80, 0.06);
+  border-left-color: #e65050;
+}
+
+.markdown-preview[data-theme="ayu-light"] .markdown-alert-caution .markdown-alert-title {
+  color: #e65050;
+}
+
+/* ============================================
+   数学公式
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] .math-inline {
+  font-size: 1em;
+}
+
+.markdown-preview[data-theme="ayu-light"] .math-display {
+  margin: 1em 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+/* ============================================
+   折叠详情
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] details {
+  margin: 1em 0;
+  padding: 0.5em 0.75em;
+  background-color: #f8f9fa;
+  border: 1px solid #e6e8eb;
+  border-radius: 8px;
+}
+
+.markdown-preview[data-theme="ayu-light"] summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: #f29718;
+}
+
+.markdown-preview[data-theme="ayu-light"] details[open] summary {
+  margin-bottom: 0.5em;
+}
+
+/* ============================================
+   嵌入媒体
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] iframe,
+.markdown-preview[data-theme="ayu-light"] video {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+  border-radius: 8px;
+  border: 1px solid #e6e8eb;
+}
+
+/* ============================================
+   元信息与时间
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"] .meta,
+.markdown-preview[data-theme="ayu-light"] time {
+  font-size: 0.875em;
+  color: #828e9f;
+}
+
+/* ============================================
+   首行缩进变体
+   ============================================ */
+
+.markdown-preview[data-theme="ayu-light"].indent-first-line p {
+  text-indent: 2em;
+}

@@ -1,0 +1,82 @@
+.markdown-preview[data-code-theme="atom-one-dark"] pre {
+  margin: 1em 0;
+  overflow-x: auto;
+  background: #282c34;
+  border: 1px solid #3b4048;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.6
+}
+.markdown-preview[data-code-theme="atom-one-dark"] pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #282c34
+}
+.markdown-preview[data-code-theme="atom-one-dark"] code.hljs {
+  padding: 3px 5px
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs {
+  color: #abb2bf;
+  background: #282c34
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-comment,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-quote {
+  color: #5c6370;
+  font-style: italic
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-doctag,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-formula,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-keyword {
+  color: #c678dd
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-deletion,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-name,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-section,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-selector-tag,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-subst {
+  color: #e06c75
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-literal {
+  color: #56b6c2
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-addition,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-attribute,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-meta .hljs-string,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-regexp,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-string {
+  color: #98c379
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-attr,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-number,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-selector-attr,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-selector-class,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-selector-pseudo,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-template-variable,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-type,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-variable {
+  color: #d19a66
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-bullet,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-link,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-meta,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-selector-id,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-symbol,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-title {
+  color: #61aeee
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-built_in,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-class .hljs-title,
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-title.class_ {
+  color: #e6c07b
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-emphasis {
+  font-style: italic
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-strong {
+  font-weight: 700
+}
+.markdown-preview[data-code-theme="atom-one-dark"] .hljs-link {
+  text-decoration: underline
+}

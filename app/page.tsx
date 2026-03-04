@@ -23,25 +23,37 @@ import {
 	PREVIEW_THEMES,
 	type PreviewThemeId,
 } from "@/lib/preview-themes";
+import { injectCodeTheme } from "@/app/themes/code-theme/client";
+import { injectThemeIfNeeded } from "@/lib/theme-dynamic-loader";
 import { cn } from "@/lib/utils";
 
 const initialMarkdown = `# 欢迎使用 Beauty MD
 
-在此输入 **Markdown**，右侧将实时预览。
+这是一个 Markdown 编辑器，支持多种预览主题和代码样式。你可以在左侧输入 Markdown 内容，右侧实时预览效果。
 
 ## 功能
 
-- 左侧编辑，右侧预览
-- 支持 GFM（表格、删除线等）
-- 专业排版样式
+- 实时预览：输入 Markdown 内容，右侧即时显示渲染效果。
+- 主题选择：点击调色板图标选择预览主题，点击代码图标选择代码样式。
+- 复制到公众号：点击分享图标将内容复制为适合微信公众号的格式。
+
+## 使用说明
+
+1. 在左侧编辑区输入你的 Markdown 内容。
+2. 使用右侧工具栏选择喜欢的预览主题和代码样式。
+3. 点击分享图标将内容复制到剪贴板，可以直接粘贴到微信公众号编辑器中。
+
+祝你使用愉快！
+
 `;
 
 const PREVIEW_STORAGE_KEY = "beauty-md-preview-theme";
 const CODE_STORAGE_KEY = "beauty-md-code-theme";
+const CONTENT_STORAGE_KEY = "beauty-md-content";
 
 export default function Home() {
-	const [content, setContent] = useState(initialMarkdown);
-	const [previewTheme, setPreviewTheme] = useState<PreviewThemeId>("default");
+	const [content, setContent] = useState("");
+	const [previewTheme, setPreviewTheme] = useState<PreviewThemeId>("ayu-light");
 	const [codeTheme, setCodeTheme] = useState<CodeThemeId>("atom-one-dark");
 	const [copyStatus, setCopyStatus] = useState<"idle" | "ok" | "fail">("idle");
 	const [themePopoverOpen, setThemePopoverOpen] = useState(false);
@@ -49,17 +61,44 @@ export default function Home() {
 	const previewRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		// Load content from localStorage
+		const savedContent = localStorage.getItem(CONTENT_STORAGE_KEY);
+		setContent(savedContent || initialMarkdown)
+
+		// Load preview theme from localStorage
 		const p = localStorage.getItem(PREVIEW_STORAGE_KEY);
 		if (p && PREVIEW_THEMES.some((t) => t.id === p)) {
-			setPreviewTheme(p as PreviewThemeId);
+			const themeId = p as PreviewThemeId;
+			setPreviewTheme(themeId);
+			// Inject theme stylesheet
+			injectThemeIfNeeded(themeId);
 		}
+
+		// Load code theme from localStorage
 		const c = localStorage.getItem(CODE_STORAGE_KEY);
 		if (c && CODE_THEMES.some((t) => t.id === c)) {
-			setCodeTheme(c as CodeThemeId);
+			const codeThemeId = c as CodeThemeId;
+			setCodeTheme(codeThemeId);
+			// Inject code theme stylesheet
+			injectCodeTheme(codeThemeId);
+		} else {
+			// Inject default code theme stylesheet
+			injectCodeTheme("atom-one-dark");
 		}
 	}, []);
 
-	function handleThemeChange(id: PreviewThemeId) {
+	// Save content to localStorage whenever it changes
+	useEffect(() => {
+		try {
+			localStorage.setItem(CONTENT_STORAGE_KEY, content);
+		} catch {
+			// ignore
+		}
+	}, [content]);
+
+	async function handleThemeChange(id: PreviewThemeId) {
+		// Dynamically inject theme stylesheet if not already loaded
+		await injectThemeIfNeeded(id);
 		setPreviewTheme(id);
 		try {
 			localStorage.setItem(PREVIEW_STORAGE_KEY, id);
@@ -69,7 +108,9 @@ export default function Home() {
 		setThemePopoverOpen(false);
 	}
 
-	function handleCodeThemeChange(id: CodeThemeId) {
+	async function handleCodeThemeChange(id: CodeThemeId) {
+		// Dynamically inject code theme stylesheet if not already loaded
+		await injectCodeTheme(id);
 		setCodeTheme(id);
 		try {
 			localStorage.setItem(CODE_STORAGE_KEY, id);

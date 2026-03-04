@@ -1,0 +1,674 @@
+/* ============================================
+   Professional - 专业商务风格
+
+   设计哲学：通过古典克制传达排版优雅
+   灵感来源：高端编辑出版物、文学杂志、
+   奢侈品牌形象，以及百年印刷传统
+
+   情感关键词：
+   - 永恒 — 超越潮流，历久弥新
+   - 温暖 — 象牙白背景与金色点缀的人文质感
+   - 精致 — 小型大写字母、精致规则线、宽裕留白
+   - 文雅 — 属于思想与有意义沟通的世界
+   - 自信 — 真正的优雅源于克制而非装饰
+
+   配色系统（硬编码）：
+   - 象牙白背景: #FAFAF8
+   - 深黑文字: #1A1A1A
+   - 次级文字: #4A4A4A
+   - 辅助灰色: #6B6B6B
+   - 燃烧金色: #B8860B (Dark Goldenrod)
+   - 浅金色: #D4A84B
+   - 边框暖灰: #E8E4DF
+   - 浅背景: #F5F3F0
+   ============================================ */
+
+/* 容器 - 象牙白背景，传达专业信任感 */
+.markdown-preview[data-theme="professional"] {
+  color: #1a1a1a;
+  background-color: #fafaf8;
+  font-family: Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 1.5em 1.25em;
+}
+
+/* ============================================
+   标题 - 深色系，逐级变淡
+   衬线字体，古典比例，编辑风格
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] h1,
+.markdown-preview[data-theme="professional"] h2,
+.markdown-preview[data-theme="professional"] h3,
+.markdown-preview[data-theme="professional"] h4,
+.markdown-preview[data-theme="professional"] h5,
+.markdown-preview[data-theme="professional"] h6 {
+  font-family: Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.35em;
+  margin-bottom: 0.5em;
+}
+
+/* H1 - 头版标题风格，居中金色下划线 */
+.markdown-preview[data-theme="professional"] h1 {
+  font-size: 1.875em;
+  color: #0d0d0d;
+  text-align: center;
+  padding-bottom: 0.4em;
+  margin-bottom: 0.6em;
+  border-bottom: 2px solid #b8860b;
+}
+
+/* H2 - 章节标题，细边框分隔 */
+.markdown-preview[data-theme="professional"] h2 {
+  font-size: 1.5em;
+  color: #1a1a1a;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #e8e4df;
+}
+
+/* H3 - 小节标题 */
+.markdown-preview[data-theme="professional"] h3 {
+  font-size: 1.25em;
+  color: #2d2d2d;
+}
+
+/* H4-H6 - 次级标题，统一颜色 */
+.markdown-preview[data-theme="professional"] h4,
+.markdown-preview[data-theme="professional"] h5,
+.markdown-preview[data-theme="professional"] h6 {
+  color: #4a4a4a;
+}
+
+.markdown-preview[data-theme="professional"] h4 {
+  font-size: 1.125em;
+}
+
+.markdown-preview[data-theme="professional"] h5 {
+  font-size: 1em;
+  font-style: italic;
+}
+
+.markdown-preview[data-theme="professional"] h6 {
+  font-size: 0.9375em;
+  font-style: italic;
+}
+
+/* 首个标题无上边距 */
+.markdown-preview[data-theme="professional"] > h1:first-child,
+.markdown-preview[data-theme="professional"] > h2:first-child,
+.markdown-preview[data-theme="professional"] > h3:first-child,
+.markdown-preview[data-theme="professional"] > h4:first-child,
+.markdown-preview[data-theme="professional"] > h5:first-child,
+.markdown-preview[data-theme="professional"] > h6:first-child {
+  margin-top: 0;
+}
+
+/* ============================================
+   段落 - 两端对齐，舒适阅读
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] p {
+  margin-bottom: 1em;
+  text-align: justify;
+}
+
+.markdown-preview[data-theme="professional"] p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   行内文本样式 - 精致的文字处理
+   ============================================ */
+
+/* 粗体 - 深黑强调 */
+.markdown-preview[data-theme="professional"] strong,
+.markdown-preview[data-theme="professional"] b {
+  font-weight: 700;
+  color: #0d0d0d;
+}
+
+/* 斜体 */
+.markdown-preview[data-theme="professional"] em,
+.markdown-preview[data-theme="professional"] i {
+  font-style: italic;
+}
+
+/* 删除线 - 淡灰色表示废弃 */
+.markdown-preview[data-theme="professional"] del,
+.markdown-preview[data-theme="professional"] s,
+.markdown-preview[data-theme="professional"] strike {
+  color: #8a8a8a;
+  text-decoration: line-through;
+}
+
+/* 高亮 - 温暖的金色调 */
+.markdown-preview[data-theme="professional"] mark {
+  background-color: #f5e6c8;
+  color: #1a1a1a;
+  padding: 0.1em 0.25em;
+}
+
+/* 小号文字 */
+.markdown-preview[data-theme="professional"] small {
+  font-size: 0.875em;
+  color: #6b6b6b;
+}
+
+/* 上下标 */
+.markdown-preview[data-theme="professional"] sup,
+.markdown-preview[data-theme="professional"] sub {
+  font-size: 0.75em;
+  line-height: 0;
+}
+
+.markdown-preview[data-theme="professional"] sup {
+  vertical-align: super;
+}
+
+.markdown-preview[data-theme="professional"] sub {
+  vertical-align: sub;
+}
+
+/* 插入文本 - 金色下划线 */
+.markdown-preview[data-theme="professional"] ins {
+  background-color: #f0ebe3;
+  text-decoration: none;
+  padding: 0.1em 0.2em;
+  border-bottom: 1px solid #b8860b;
+}
+
+/* 行内引用 - 金色引号 */
+.markdown-preview[data-theme="professional"] q {
+  quotes: '"' '"' '' ' ' '';
+  color: #1a1a1a;
+}
+
+.markdown-preview[data-theme="professional"] q::before {
+  content: open-quote;
+  color: #b8860b;
+  font-weight: 600;
+}
+
+.markdown-preview[data-theme="professional"] q::after {
+  content: close-quote;
+  color: #b8860b;
+  font-weight: 600;
+}
+
+/* 变量 - 斜体深色 */
+.markdown-preview[data-theme="professional"] var {
+  font-style: italic;
+  color: #2d2d2d;
+}
+
+/* 示例输出 - 等宽字体 */
+.markdown-preview[data-theme="professional"] samp,
+.markdown-preview[data-theme="professional"] tt {
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.875em;
+  background-color: #f5f3f0;
+  color: #4a4a4a;
+  padding: 0.1em 0.3em;
+  border: 1px solid #e8e4df;
+}
+
+/* 缩写 - 金色点状下划线 */
+.markdown-preview[data-theme="professional"] abbr[title] {
+  border-bottom: 1px dotted #b8860b;
+  cursor: help;
+  text-decoration: none;
+}
+
+/* ============================================
+   链接 - 燃烧金色点缀
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] a {
+  color: #b8860b;
+  text-decoration: none;
+  border-bottom: 1px solid #d4a84b;
+}
+
+.markdown-preview[data-theme="professional"] a:hover {
+  color: #996f09;
+  border-bottom-color: #996f09;
+}
+
+/* ============================================
+   Ruby 注音
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] ruby {
+  ruby-align: center;
+}
+
+.markdown-preview[data-theme="professional"] rt {
+  font-size: 0.5em;
+  color: #6b6b6b;
+}
+
+.markdown-preview[data-theme="professional"] rp {
+  color: #8a8a8a;
+}
+
+/* ============================================
+   列表 - 经典有序排版
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] ul,
+.markdown-preview[data-theme="professional"] ol {
+  margin-bottom: 1em;
+  padding-left: 1.75em;
+}
+
+.markdown-preview[data-theme="professional"] ul {
+  list-style-type: disc;
+}
+
+.markdown-preview[data-theme="professional"] ol {
+  list-style-type: decimal;
+}
+
+.markdown-preview[data-theme="professional"] li {
+  margin-bottom: 0.25em;
+}
+
+/* 列表标记使用金色 */
+.markdown-preview[data-theme="professional"] li::marker {
+  color: #b8860b;
+}
+
+.markdown-preview[data-theme="professional"] li > ul,
+.markdown-preview[data-theme="professional"] li > ol {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.markdown-preview[data-theme="professional"] ul ul {
+  list-style-type: circle;
+}
+
+.markdown-preview[data-theme="professional"] ul ul ul {
+  list-style-type: square;
+}
+
+/* 任务列表 */
+.markdown-preview[data-theme="professional"] ul.contains-task-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.markdown-preview[data-theme="professional"] li.task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4em;
+}
+
+.markdown-preview[data-theme="professional"] input[type='checkbox'] {
+  margin-top: 0.35em;
+  accent-color: #b8860b;
+}
+
+/* ============================================
+   引用块 - 优雅左边框
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] blockquote {
+  margin: 1.1em 0;
+  padding: 0.75em 1em;
+  border-left: 3px solid #b8860b;
+  background-color: #f5f3f0;
+  color: #2d2d2d;
+  font-style: italic;
+}
+
+.markdown-preview[data-theme="professional"] blockquote p {
+  margin-bottom: 0.4em;
+}
+
+.markdown-preview[data-theme="professional"] blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* 嵌套引用 - 更浅的金色边框 */
+.markdown-preview[data-theme="professional"] blockquote blockquote {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  border-left-color: #d4a84b;
+  background-color: #f0ebe3;
+}
+
+/* ============================================
+   代码 - 精致的技术文档风格
+   ============================================ */
+
+/* 代码块样式已由 reset.css 统一管理，此处保留空选择器避免破坏结构 */
+
+/* ============================================
+   表格 - 精致的数据展示
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] table {
+  width: 100%;
+  margin: 1.1em 0;
+  border-collapse: collapse;
+  font-size: 0.9375em;
+}
+
+/* 表头首行样式（替代 thead） */
+.markdown-preview[data-theme="professional"] tr:first-child th {
+  background-color: transparent;
+  border-bottom: 2px solid #1a1a1a;
+}
+
+.markdown-preview[data-theme="professional"] th,
+.markdown-preview[data-theme="professional"] td {
+  padding: 0.5em 0.75em;
+  border: 1px solid #e8e4df;
+  text-align: left;
+}
+
+.markdown-preview[data-theme="professional"] th {
+  font-weight: 700;
+  background-color: #f8f7f4;
+  color: #0d0d0d;
+}
+
+.markdown-preview[data-theme="professional"] tbody tr:nth-child(even) {
+  background-color: #fafaf8;
+}
+
+/* Frontmatter 元数据表格 */
+.markdown-preview[data-theme="professional"] .frontmatter-table {
+  width: auto;
+  margin-bottom: 1.5em;
+  font-size: 0.875em;
+  border: none;
+}
+
+.markdown-preview[data-theme="professional"] .frontmatter-table td {
+  padding: 0.25em 0.75em 0.25em 0;
+  border: none;
+  vertical-align: top;
+  background-color: transparent;
+}
+
+.markdown-preview[data-theme="professional"] .frontmatter-key {
+  font-weight: 700;
+  color: #2d2d2d;
+  white-space: nowrap;
+}
+
+.markdown-preview[data-theme="professional"] .frontmatter-key::after {
+  content: ':';
+}
+
+.markdown-preview[data-theme="professional"] .frontmatter-value {
+  color: #4a4a4a;
+}
+
+/* ============================================
+   分割线 - 简洁优雅的分隔
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] hr {
+  margin: 1.5em 0;
+  border: none;
+  height: 1px;
+  background-color: #e8e4df;
+}
+
+/* ============================================
+   图片与媒体 - 精致边框处理
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e8e4df;
+  margin: 1.1em 0;
+}
+
+.markdown-preview[data-theme="professional"] picture {
+  display: block;
+  margin: 1.1em 0;
+}
+
+.markdown-preview[data-theme="professional"] picture img {
+  display: block;
+  margin: 0;
+}
+
+.markdown-preview[data-theme="professional"] figure {
+  margin: 1.25em 0;
+  text-align: center;
+}
+
+.markdown-preview[data-theme="professional"] figure img {
+  display: block;
+  margin: 0 auto;
+}
+
+.markdown-preview[data-theme="professional"] figcaption {
+  margin-top: 0.5em;
+  font-size: 0.875em;
+  color: #6b6b6b;
+  font-style: italic;
+}
+
+/* ============================================
+   脚注 - 编辑风格的注释区
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] .footnotes {
+  margin-top: 1.75em;
+  padding-top: 0.75em;
+  border-top: 1px solid #e8e4df;
+  font-size: 0.875em;
+  color: #6b6b6b;
+}
+
+.markdown-preview[data-theme="professional"] .footnotes ol {
+  padding-left: 1.25em;
+}
+
+.markdown-preview[data-theme="professional"] .footnote-ref {
+  font-size: 0.75em;
+  vertical-align: super;
+  color: #b8860b;
+  font-weight: 600;
+}
+
+.markdown-preview[data-theme="professional"] .footnote-backref,
+.markdown-preview[data-theme="professional"] .data-footnote-backref {
+  color: #b8860b;
+  text-decoration: none;
+}
+
+/* ============================================
+   定义列表 - 术语解释风格
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] dl {
+  margin: 1.1em 0;
+}
+
+.markdown-preview[data-theme="professional"] dt {
+  font-weight: 700;
+  color: #0d0d0d;
+  margin-top: 0.5em;
+}
+
+.markdown-preview[data-theme="professional"] dt:first-child {
+  margin-top: 0;
+}
+
+.markdown-preview[data-theme="professional"] dd {
+  margin-left: 1.25em;
+  margin-top: 0.2em;
+  color: #4a4a4a;
+}
+
+/* ============================================
+   键盘按键 - 经典按键风格
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] kbd {
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.8125em;
+  display: inline-block;
+  padding: 0.15em 0.4em;
+  background-color: #f8f7f4;
+  border: 1px solid #d4d0c8;
+  border-bottom: 2px solid #b8b4ac;
+  color: #1a1a1a;
+}
+
+/* ============================================
+   警告框 - 商务风格的提示框
+   使用柔和的商务色调
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] .markdown-alert {
+  margin: 1.1em 0;
+  padding: 0.625em 1em;
+  border: 1px solid;
+  border-left: 3px solid;
+  background-color: #f8f7f4;
+}
+
+.markdown-preview[data-theme="professional"] .markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  font-weight: 700;
+  margin-bottom: 0.3em;
+}
+
+/* Note - 深灰蓝（稳重信息） */
+.markdown-preview[data-theme="professional"] .markdown-alert-note {
+  background-color: #f5f6f8;
+  border-color: #8b95a5;
+  border-left-color: #5c6b7f;
+}
+
+.markdown-preview[data-theme="professional"] .markdown-alert-note .markdown-alert-title {
+  color: #5c6b7f;
+}
+
+/* Tip - 橄榄绿（有益建议） */
+.markdown-preview[data-theme="professional"] .markdown-alert-tip {
+  background-color: #f6f8f5;
+  border-color: #8fa082;
+  border-left-color: #6b8060;
+}
+
+.markdown-preview[data-theme="professional"] .markdown-alert-tip .markdown-alert-title {
+  color: #6b8060;
+}
+
+/* Important - 深褐（重要事项） */
+.markdown-preview[data-theme="professional"] .markdown-alert-important {
+  background-color: #f8f6f5;
+  border-color: #a08575;
+  border-left-color: #7a6455;
+}
+
+.markdown-preview[data-theme="professional"] .markdown-alert-important .markdown-alert-title {
+  color: #7a6455;
+}
+
+/* Warning - 金褐（注意警示） */
+.markdown-preview[data-theme="professional"] .markdown-alert-warning {
+  background-color: #faf8f4;
+  border-color: #c9a855;
+  border-left-color: #b8860b;
+}
+
+.markdown-preview[data-theme="professional"] .markdown-alert-warning .markdown-alert-title {
+  color: #9a7209;
+}
+
+/* Caution - 深红褐（危险警告） */
+.markdown-preview[data-theme="professional"] .markdown-alert-caution {
+  background-color: #f9f5f5;
+  border-color: #b08080;
+  border-left-color: #8b5050;
+}
+
+.markdown-preview[data-theme="professional"] .markdown-alert-caution .markdown-alert-title {
+  color: #8b5050;
+}
+
+/* ============================================
+   数学公式 - 学术风格
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] .math-inline {
+  font-size: 1em;
+}
+
+.markdown-preview[data-theme="professional"] .math-display {
+  margin: 1.1em 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+/* ============================================
+   折叠详情 - 可展开内容区
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] details {
+  margin: 1.1em 0;
+  padding: 0.5em 0.75em;
+  background-color: #f8f7f4;
+  border: 1px solid #e8e4df;
+  border-left: 3px solid #b8860b;
+}
+
+.markdown-preview[data-theme="professional"] summary {
+  font-weight: 700;
+  cursor: pointer;
+  color: #2d2d2d;
+}
+
+.markdown-preview[data-theme="professional"] details[open] summary {
+  margin-bottom: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #e8e4df;
+}
+
+/* ============================================
+   嵌入媒体 - 统一边框处理
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] iframe,
+.markdown-preview[data-theme="professional"] video {
+  display: block;
+  max-width: 100%;
+  margin: 1.1em 0;
+  border: 1px solid #e8e4df;
+}
+
+/* ============================================
+   元信息与时间 - 编辑风格
+   ============================================ */
+
+.markdown-preview[data-theme="professional"] .meta,
+.markdown-preview[data-theme="professional"] time {
+  font-size: 0.875em;
+  color: #6b6b6b;
+  font-style: italic;
+}
+
+/* ============================================
+   首行缩进变体 - 传统书籍排版
+   ============================================ */
+
+.markdown-preview[data-theme="professional"].indent-first-line p {
+  text-indent: 2em;
+}

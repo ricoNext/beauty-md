@@ -6,6 +6,8 @@ import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import { remarkTrimCodeBlocks } from "@/lib/remark-trim-code-blocks";
+import { remarkQuoteLinkCard } from "@/lib/remark-quote-link-card";
+import { rehypeLinkFootnotes } from "@/lib/rehype-link-footnotes";
 import { cn } from "@/lib/utils";
 import type { CodeThemeId } from "@/lib/code-themes";
 import type { PreviewThemeId } from "@/lib/preview-themes";
@@ -77,10 +79,7 @@ const previewComponents: Components = {
 		);
 	},
 	pre: ({ className, ...props }) => (
-		<pre
-			className="mb-3 overflow-x-auto rounded-lg border border-border bg-muted p-4 font-mono text-sm text-foreground"
-			{...props}
-		/>
+		<pre {...props} />
 	),
 	a: ({ className, ...props }) => (
 		<a
@@ -106,7 +105,7 @@ const previewComponents: Components = {
 
 export const MarkdownPreview = forwardRef<HTMLDivElement, MarkdownPreviewProps>(
 	function MarkdownPreview(
-		{ content, theme = "default", codeTheme = "atom-one-dark", className },
+		{ content, theme = "ayu-light", codeTheme = "atom-one-dark", className },
 		ref,
 	) {
 		return (
@@ -118,8 +117,8 @@ export const MarkdownPreview = forwardRef<HTMLDivElement, MarkdownPreviewProps>(
 			>
 				{content.trim() ? (
 					<Markdown
-						remarkPlugins={[remarkTrimCodeBlocks, remarkGfm]}
-						rehypePlugins={[rehypeHighlight]}
+						remarkPlugins={[remarkTrimCodeBlocks, remarkGfm, remarkQuoteLinkCard]}
+						rehypePlugins={[rehypeHighlight, rehypeLinkFootnotes]}
 						components={previewComponents}
 					>
 						{content}

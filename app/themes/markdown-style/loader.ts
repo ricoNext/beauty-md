@@ -6,10 +6,20 @@ const cache = new Map<MarkdownStyleId, string>();
 let resetCssCache: string | null = null;
 
 const fileMap: Record<MarkdownStyleId, string> = {
-  default: "default.css",
-  simple: "simple.css",
-  modern: "modern.css",
-  elegant: "elegant.css",
+	"ayu-light": "ayu-light.css",
+	bauhaus: "bauhaus.css",
+	blueprint: "blueprint.css",
+	botanical: "botanical.css",
+	"green-simple": "green-simple.css",
+	maximalism: "maximalism.css",
+	"neo-brutalism": "neo-brutalism.css",
+	newsprint: "newsprint.css",
+	organic: "organic.css",
+	"playful-geometric": "playful-geometric.css",
+	professional: "professional.css",
+	retro: "retro.css",
+	sketch: "sketch.css",
+	terminal: "terminal.css",
 };
 
 function resolveCssPath(id: MarkdownStyleId): string | undefined {

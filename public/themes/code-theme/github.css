@@ -1,0 +1,96 @@
+.markdown-preview[data-code-theme="github"] pre {
+  margin: 1em 0;
+  overflow-x: auto;
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.6
+}
+.markdown-preview[data-code-theme="github"] pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #fff
+}
+.markdown-preview[data-code-theme="github"] code.hljs {
+  padding: 3px 5px
+}
+.markdown-preview[data-code-theme="github"] .hljs {
+  color: #24292e;
+  background: #fff
+}
+.markdown-preview[data-code-theme="github"] .hljs-doctag,
+.markdown-preview[data-code-theme="github"] .hljs-keyword,
+.markdown-preview[data-code-theme="github"] .hljs-meta .hljs-keyword,
+.markdown-preview[data-code-theme="github"] .hljs-template-tag,
+.markdown-preview[data-code-theme="github"] .hljs-template-variable,
+.markdown-preview[data-code-theme="github"] .hljs-type,
+.markdown-preview[data-code-theme="github"] .hljs-variable.language_ {
+  color: #d73a49
+}
+.markdown-preview[data-code-theme="github"] .hljs-title,
+.markdown-preview[data-code-theme="github"] .hljs-title.class_,
+.markdown-preview[data-code-theme="github"] .hljs-title.class_.inherited__,
+.markdown-preview[data-code-theme="github"] .hljs-title.function_ {
+  color: #6f42c1
+}
+.markdown-preview[data-code-theme="github"] .hljs-attr,
+.markdown-preview[data-code-theme="github"] .hljs-attribute,
+.markdown-preview[data-code-theme="github"] .hljs-literal,
+.markdown-preview[data-code-theme="github"] .hljs-meta,
+.markdown-preview[data-code-theme="github"] .hljs-number,
+.markdown-preview[data-code-theme="github"] .hljs-operator,
+.markdown-preview[data-code-theme="github"] .hljs-selector-attr,
+.markdown-preview[data-code-theme="github"] .hljs-selector-class,
+.markdown-preview[data-code-theme="github"] .hljs-selector-id,
+.markdown-preview[data-code-theme="github"] .hljs-variable {
+  color: #005cc5
+}
+.markdown-preview[data-code-theme="github"] .hljs-meta .hljs-string,
+.markdown-preview[data-code-theme="github"] .hljs-regexp,
+.markdown-preview[data-code-theme="github"] .hljs-string {
+  color: #032f62
+}
+.markdown-preview[data-code-theme="github"] .hljs-built_in,
+.markdown-preview[data-code-theme="github"] .hljs-symbol {
+  color: #e36209
+}
+.markdown-preview[data-code-theme="github"] .hljs-code,
+.markdown-preview[data-code-theme="github"] .hljs-comment,
+.markdown-preview[data-code-theme="github"] .hljs-formula {
+  color: #6a737d
+}
+.markdown-preview[data-code-theme="github"] .hljs-name,
+.markdown-preview[data-code-theme="github"] .hljs-quote,
+.markdown-preview[data-code-theme="github"] .hljs-selector-pseudo,
+.markdown-preview[data-code-theme="github"] .hljs-selector-tag {
+  color: #22863a
+}
+.markdown-preview[data-code-theme="github"] .hljs-subst {
+  color: #24292e
+}
+.markdown-preview[data-code-theme="github"] .hljs-section {
+  color: #005cc5;
+  font-weight: 700
+}
+.markdown-preview[data-code-theme="github"] .hljs-bullet {
+  color: #735c0f
+}
+.markdown-preview[data-code-theme="github"] .hljs-emphasis {
+  color: #24292e;
+  font-style: italic
+}
+.markdown-preview[data-code-theme="github"] .hljs-strong {
+  color: #24292e;
+  font-weight: 700
+}
+.markdown-preview[data-code-theme="github"] .hljs-addition {
+  color: #22863a;
+  background-color: #f0fff4
+}
+.markdown-preview[data-code-theme="github"] .hljs-deletion {
+  color: #b31d28;
+  background-color: #ffeef0
+}

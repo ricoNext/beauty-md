@@ -6,8 +6,11 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import { unified } from "unified";
 import type { MarkdownStyleId } from "@/app/themes/markdown-style";
+import type { CodeThemeId } from "@/lib/code-themes";
 import { loadMarkdownResetCss, loadMarkdownStyleCss } from "@/app/themes/markdown-style/loader";
-import { loadCodeThemePreviewCss } from "@/app/themes/code-theme/loader";
+import { loadCodeThemeCss } from "@/app/themes/code-theme/loader";
+import { rehypeLinkFootnotes } from "@/lib/rehype-link-footnotes";
+import { remarkQuoteLinkCard } from "@/lib/remark-quote-link-card";
 import { remarkTrimCodeBlocks } from "@/lib/remark-trim-code-blocks";
 
 export interface WechatRenderOptions {
@@ -80,19 +83,95 @@ function protectCodeWhitespaceInHtml(html: string): string {
 	});
 }
 
-/** 公众号粘贴用：代码块不换行，超出宽度显示横向滚动条（!important 对抗公众号覆盖） */
+/** 公众号粘贴用：关键排版修正（代码块 + 链接二维码卡片） */
 const WECHAT_CODE_BLOCK_CSS = `
+/* 代码块固定样式 - 与预览一致 */
 .markdown-preview pre {
-  white-space: pre !important;
+  margin: 1em 0 !important;
   overflow-x: auto !important;
-  overflow-wrap: normal !important;
-  word-break: normal !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 16px !important;
+  background-color: #f8f9fa !important;
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  white-space: pre !important;
 }
+
 .markdown-preview pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
   white-space: pre !important;
-  overflow-x: auto !important;
   display: table !important;
   min-width: max-content !important;
+}
+
+.markdown-preview code:not(pre code) {
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace !important;
+  font-size: 0.875em !important;
+  background-color: #f3f4f6 !important;
+  color: #e11d48 !important;
+  padding: 0.15em 0.45em !important;
+  border-radius: 4px !important;
+}
+
+/* 独占引用链接二维码卡片：在公众号中也保持左右分栏卡片布局 */
+.markdown-preview .md-qr-card {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 16px !important;
+  margin: 20px 0 !important;
+  border-radius: 12px !important;
+  background-color: #f5f5f5 !important;
+  border: 1px solid #e5e5e5 !important;
+}
+
+.markdown-preview .md-qr-card-left {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  margin-right: 12px !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.markdown-preview .md-qr-card-tip {
+  margin: 0 !important;
+  font-size: 13px !important;
+  color: #666666 !important;
+}
+
+.markdown-preview .md-qr-card-url {
+  margin: 0 !important;
+  font-size: 13px !important;
+  color: #333333 !important;
+  overflow-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
+.markdown-preview .md-qr-card-right {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+}
+
+.markdown-preview .md-qr-card-qrcode {
+  display: block !important;
+  width: 88px !important;
+  height: 88px !important;
+  border-radius: 8px !important;
+  background-color: transparent !important;
+  object-fit: contain !important;
 }
 `;
 
@@ -112,14 +191,16 @@ function normalizeWechatListsInHtml(html: string): string {
  */
 export async function renderWechatHtml(options: WechatRenderOptions): Promise<string> {
 	const { markdown, markdownStyle } = options;
-	const codeTheme = options.codeTheme ?? "atom-one-dark";
+	const codeTheme = options.codeTheme ?? "kimbie-light";
 
 	const processor = unified()
 		.use(remarkParse)
 		.use(remarkTrimCodeBlocks)
 		.use(remarkGfm)
+		.use(remarkQuoteLinkCard)
 		.use(remarkRehype, { allowDangerousHtml: true })
 		.use(rehypeHighlight)
+		.use(rehypeLinkFootnotes)
 		.use(rehypeStringify, { allowDangerousHtml: true });
 
 	const vfile = await processor.process(markdown);
@@ -129,13 +210,13 @@ export async function renderWechatHtml(options: WechatRenderOptions): Promise<st
 	html = normalizeWechatListsInHtml(html);
 	html = `<section class="markdown-preview" data-theme="${markdownStyle}" data-code-theme="${codeTheme}">${html}</section>`;
 
-	// 始终内联 default.css 作为基础主题，再叠加当前 markdownStyle 的覆盖，
-	// 这样与前端预览「default 作为基底 + 主题覆盖」的行为一致。
+	// 始终内联 reset.css、ayu-light.css 作为基础主题，再叠加当前 markdownStyle 的覆盖，
+	// 这样与前端预览「ayu-light 作为基底 + 主题覆盖」的行为一致。
 	const [resetCss, baseCss, themeCss, codeCss] = await Promise.all([
 		loadMarkdownResetCss(),
-		loadMarkdownStyleCss("default"),
-		markdownStyle === "default" ? Promise.resolve<string | undefined>("") : loadMarkdownStyleCss(markdownStyle),
-		loadCodeThemePreviewCss(),
+		loadMarkdownStyleCss("ayu-light"),
+		markdownStyle === "ayu-light" ? Promise.resolve<string | undefined>("") : loadMarkdownStyleCss(markdownStyle),
+		loadCodeThemeCss(codeTheme as CodeThemeId),
 	]);
 	const css = [resetCss ?? "", baseCss ?? "", themeCss ?? "", codeCss ?? "", WECHAT_CODE_BLOCK_CSS]
 		.filter(Boolean)

@@ -3,12 +3,9 @@
 @import "shadcn/tailwind.css";
 
 /* ========== Markdown 预览：排版主题 + 代码高亮主题 ========== */
+/* 只加载 reset 和默认主题，其他主题按需动态加载 */
 @import "./themes/markdown-style/reset.css";
-@import "./themes/markdown-style/default.css";
-@import "./themes/markdown-style/simple.css";
-@import "./themes/markdown-style/modern.css";
-@import "./themes/markdown-style/elegant.css";
-@import "./themes/code-theme/preview.css";
+@import "./themes/markdown-style/ayu-light.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -163,6 +160,95 @@ container {
   font-size: var(--md-font-size);
   line-height: 1.75;
   text-align: left;
+}
+
+/* ==================== 链接索引样式（预览 + 公众号） ==================== */
+.markdown-preview sup.md-link-index {
+  font-size: 0.75em;
+  vertical-align: super;
+  margin-left: 0.1em;
+}
+
+.markdown-preview .md-link-index-section {
+  margin-top: 2.5rem;
+}
+
+.markdown-preview .md-link-index-divider {
+  border: none;
+  border-top: 1px solid var(--md-border-color, #e5e7eb);
+  margin-bottom: 1.25rem;
+}
+
+.markdown-preview .md-link-index-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.markdown-preview .md-link-index-list {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.markdown-preview .md-link-index-list li {
+  margin-bottom: 0.25rem;
+}
+
+.markdown-preview .md-link-index-url {
+  word-break: break-all;
+}
+
+/* ==================== 独占引用链接二维码卡片 ==================== */
+.markdown-preview .md-qr-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  margin: 20px 0;
+  border-radius: 12px;
+  background-color: #f5f5f5;
+  border: 1px solid #e5e5e5;
+}
+
+.markdown-preview .md-qr-card-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-right: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.markdown-preview .md-qr-card-tip {
+  margin: 0;
+  font-size: 13px;
+  color: #666666;
+}
+
+.markdown-preview .md-qr-card-url {
+  margin: 0;
+  font-size: 13px;
+  color: #333333;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+
+.markdown-preview .md-qr-card-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  padding: 0;
+}
+
+.markdown-preview .md-qr-card-qrcode {
+  display: block;
+  width: 88px;
+  height: 88px;
+  border-radius: 8px;
+  background-color: transparent;
+  object-fit: contain;
 }
 
 /* ==================== Global resets ==================== */

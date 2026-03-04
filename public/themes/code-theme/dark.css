@@ -1,0 +1,64 @@
+.markdown-preview[data-code-theme="dark"] pre {
+  margin: 1em 0;
+  overflow-x: auto;
+  background: #303030;
+  border: 1px solid #404040;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.6
+}
+.markdown-preview[data-code-theme="dark"] pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #303030
+}
+.markdown-preview[data-code-theme="dark"] code.hljs {
+  padding: 3px 5px
+}
+.markdown-preview[data-code-theme="dark"] .hljs {
+  color: #ddd;
+  background: #303030
+}
+.markdown-preview[data-code-theme="dark"] .hljs-keyword,
+.markdown-preview[data-code-theme="dark"] .hljs-link,
+.markdown-preview[data-code-theme="dark"] .hljs-literal,
+.markdown-preview[data-code-theme="dark"] .hljs-section,
+.markdown-preview[data-code-theme="dark"] .hljs-selector-tag {
+  color: #fff
+}
+.markdown-preview[data-code-theme="dark"] .hljs-addition,
+.markdown-preview[data-code-theme="dark"] .hljs-attribute,
+.markdown-preview[data-code-theme="dark"] .hljs-built_in,
+.markdown-preview[data-code-theme="dark"] .hljs-bullet,
+.markdown-preview[data-code-theme="dark"] .hljs-name,
+.markdown-preview[data-code-theme="dark"] .hljs-string,
+.markdown-preview[data-code-theme="dark"] .hljs-symbol,
+.markdown-preview[data-code-theme="dark"] .hljs-template-tag,
+.markdown-preview[data-code-theme="dark"] .hljs-template-variable,
+.markdown-preview[data-code-theme="dark"] .hljs-title,
+.markdown-preview[data-code-theme="dark"] .hljs-type,
+.markdown-preview[data-code-theme="dark"] .hljs-variable {
+  color: #d88
+}
+.markdown-preview[data-code-theme="dark"] .hljs-comment,
+.markdown-preview[data-code-theme="dark"] .hljs-deletion,
+.markdown-preview[data-code-theme="dark"] .hljs-meta,
+.markdown-preview[data-code-theme="dark"] .hljs-quote {
+  color: #979797
+}
+.markdown-preview[data-code-theme="dark"] .hljs-doctag,
+.markdown-preview[data-code-theme="dark"] .hljs-keyword,
+.markdown-preview[data-code-theme="dark"] .hljs-literal,
+.markdown-preview[data-code-theme="dark"] .hljs-name,
+.markdown-preview[data-code-theme="dark"] .hljs-section,
+.markdown-preview[data-code-theme="dark"] .hljs-selector-tag,
+.markdown-preview[data-code-theme="dark"] .hljs-strong,
+.markdown-preview[data-code-theme="dark"] .hljs-title,
+.markdown-preview[data-code-theme="dark"] .hljs-type {
+  font-weight: 700
+}
+.markdown-preview[data-code-theme="dark"] .hljs-emphasis {
+  font-style: italic
+}
