@@ -1,6 +1,7 @@
 "use client";
 
 import { Code, Palette, Share2 } from "lucide-react";
+import { UserMenu } from "@/components/user-menu";
 import { useEffect, useRef, useState } from "react";
 import { MarkdownEditor } from "@/components/markdown/markdown-editor";
 import { MarkdownPreview } from "@/components/markdown/markdown-preview";
@@ -163,6 +164,10 @@ export default function Home() {
 
 	return (
 		<div className="flex h-screen flex-col font-sans">
+			<header className="flex h-12 shrink-0 items-center justify-between border-b border-border bg-background px-4">
+				<h1 className="text-sm font-semibold">Beauty MD</h1>
+				<UserMenu />
+			</header>
 			<main className="flex min-h-0 flex-1">
 				<section className="flex min-w-0 flex-1 flex-col border-r border-border">
 					<div className="min-h-0 flex-1 p-3">
