@@ -1,0 +1,673 @@
+/* ============================================
+   Default - 默认主题
+   基于用户提供的 CSS 样式
+   经典默认风格
+   ============================================ */
+
+/* 容器基础样式与 CSS 变量定义 */
+.markdown-preview[data-theme="default"] {
+  --md-font-size: 16px;
+  --md-primary-color: #576b95;
+  --foreground: 0 0% 10%;
+  --blockquote-background: rgba(0, 0, 0, 0.02);
+
+  padding: 1.5em 1em;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  font-size: var(--md-font-size);
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+/* ============================================
+   标题样式
+   ============================================ */
+
+.markdown-preview[data-theme="default"] h1,
+.markdown-preview[data-theme="default"] h2,
+.markdown-preview[data-theme="default"] h3,
+.markdown-preview[data-theme="default"] h4,
+.markdown-preview[data-theme="default"] h5,
+.markdown-preview[data-theme="default"] h6 {
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.markdown-preview[data-theme="default"] h1 {
+  display: table;
+  padding: 0 1em;
+  margin: 2em auto 1em;
+  font-size: calc(var(--md-font-size) * 1.2);
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 2px solid var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="default"] h2 {
+  display: table;
+  padding: 0 0.2em;
+  margin: 4em auto 2em;
+  font-size: calc(var(--md-font-size) * 1.2);
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  background-color: var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="default"] h3 {
+  padding-left: 8px;
+  margin: 2em 8px 0.75em 0;
+  font-size: calc(var(--md-font-size) * 1.1);
+  font-weight: 700;
+  line-height: 1.2;
+  border-left: 3px solid var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="default"] h4 {
+  margin: 2em 8px 0.5em;
+  font-size: var(--md-font-size);
+  font-weight: 700;
+  color: var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="default"] h5 {
+  margin: 1.5em 8px 0.5em;
+  font-size: var(--md-font-size);
+  font-weight: 700;
+  color: var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="default"] h6 {
+  margin: 1.5em 8px 0.5em;
+  font-size: var(--md-font-size);
+  color: var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="default"] > h1:first-child,
+.markdown-preview[data-theme="default"] > h2:first-child,
+.markdown-preview[data-theme="default"] > h3:first-child,
+.markdown-preview[data-theme="default"] > h4:first-child,
+.markdown-preview[data-theme="default"] > h5:first-child,
+.markdown-preview[data-theme="default"] > h6:first-child {
+  margin-top: 0;
+}
+
+/* ============================================
+   段落
+   ============================================ */
+
+.markdown-preview[data-theme="default"] p {
+  margin: 1.5em 8px;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   行内文本样式
+   ============================================ */
+
+.markdown-preview[data-theme="default"] strong {
+  font-weight: 700;
+  color: var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="default"] em,
+.markdown-preview[data-theme="default"] i {
+  font-size: inherit;
+  font-style: italic;
+}
+
+.markdown-preview[data-theme="default"] mark {
+  padding: 2px 4px;
+  color: #fff;
+  background-color: var(--md-primary-color);
+  border-radius: 2px;
+}
+
+.markdown-preview[data-theme="default"] small {
+  font-size: 0.875em;
+  color: #666;
+}
+
+.markdown-preview[data-theme="default"] del,
+.markdown-preview[data-theme="default"] s,
+.markdown-preview[data-theme="default"] strike {
+  color: #888;
+  text-decoration: line-through;
+}
+
+.markdown-preview[data-theme="default"] ins {
+  padding: 0.1em 0.2em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--md-primary-color);
+}
+
+/* ============================================
+   链接
+   ============================================ */
+
+.markdown-preview[data-theme="default"] a {
+  color: #576b95;
+  text-decoration: none;
+}
+
+.markdown-preview[data-theme="default"] a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   行内代码
+   ============================================ */
+
+.markdown-preview[data-theme="default"] code {
+  padding: 3px 5px;
+  font-family: "Fira Code", Menlo, "Operator Mono", Consolas, Monaco, monospace;
+  font-size: 90%;
+  color: #d14;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 4px;
+}
+
+/* 代码块内的 code 覆盖行内样式 */
+.markdown-preview[data-theme="default"] pre code {
+  display: block;
+  padding: 0.5em 1em 1em;
+  margin: 0;
+  overflow-x: auto;
+  color: inherit;
+  white-space: pre;
+  background-color: transparent;
+}
+
+/* ============================================
+   引用块
+   ============================================ */
+
+.markdown-preview[data-theme="default"] blockquote {
+  padding: 1em;
+  margin-bottom: 1em;
+  font-style: normal;
+  background-color: var(--blockquote-background);
+  border-left: 4px solid var(--md-primary-color);
+  border-radius: 6px;
+}
+
+.markdown-preview[data-theme="default"] blockquote p {
+  display: block;
+  margin: 0;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   GFM 警告块
+   ============================================ */
+
+.markdown-preview[data-theme="default"] .markdown-alert {
+  padding: 0.625em 1em;
+  margin: 1em 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+.markdown-preview[data-theme="default"] .markdown-alert-title {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  margin-bottom: 0.5em;
+  font-size: 0.875em;
+  font-weight: 600;
+}
+
+/* Note */
+.markdown-preview[data-theme="default"] .markdown-alert-note {
+  border-left-color: #478be6;
+}
+
+.markdown-preview[data-theme="default"]
+  .markdown-alert-note
+  .markdown-alert-title {
+  color: #478be6;
+}
+
+/* Tip */
+.markdown-preview[data-theme="default"] .markdown-alert-tip {
+  border-left-color: #57ab5a;
+}
+
+.markdown-preview[data-theme="default"]
+  .markdown-alert-tip
+  .markdown-alert-title {
+  color: #57ab5a;
+}
+
+/* Important */
+.markdown-preview[data-theme="default"] .markdown-alert-important {
+  border-left-color: #986ee2;
+}
+
+.markdown-preview[data-theme="default"]
+  .markdown-alert-important
+  .markdown-alert-title {
+  color: #986ee2;
+}
+
+/* Warning */
+.markdown-preview[data-theme="default"] .markdown-alert-warning {
+  border-left-color: #c69026;
+}
+
+.markdown-preview[data-theme="default"]
+  .markdown-alert-warning
+  .markdown-alert-title {
+  color: #c69026;
+}
+
+/* Caution */
+.markdown-preview[data-theme="default"] .markdown-alert-caution {
+  border-left-color: #e5534b;
+}
+
+.markdown-preview[data-theme="default"]
+  .markdown-alert-caution
+  .markdown-alert-title {
+  color: #e5534b;
+}
+
+/* ============================================
+   列表
+   ============================================ */
+
+.markdown-preview[data-theme="default"] ol {
+  padding-left: 1em;
+  margin-bottom: 0.9em;
+  margin-left: 0;
+  list-style-type: decimal;
+}
+
+.markdown-preview[data-theme="default"] ul {
+  padding-left: 1em;
+  margin-bottom: 0.9em;
+  margin-left: 0;
+  list-style: circle;
+}
+
+.markdown-preview[data-theme="default"] li {
+  display: block;
+  margin: 0.2em 8px;
+}
+
+.markdown-preview[data-theme="default"] li > ul,
+.markdown-preview[data-theme="default"] li > ol {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+/* 任务列表 */
+.markdown-preview[data-theme="default"] ul.contains-task-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.markdown-preview[data-theme="default"] li.task-list-item {
+  display: flex;
+  gap: 0.4em;
+  align-items: flex-start;
+}
+
+.markdown-preview[data-theme="default"] input[type="checkbox"] {
+  margin-top: 0.3em;
+  accent-color: var(--md-primary-color);
+}
+
+/* ============================================
+   代码块
+   ============================================ */
+
+.markdown-preview[data-theme="default"] pre {
+  padding: 0;
+  margin: 10px 8px;
+  overflow-x: auto;
+  font-size: 90%;
+  line-height: 1.5;
+  border-radius: 8px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.markdown-preview[data-theme="default"] pre code {
+  font-family: "Fira Code", Menlo, "Operator Mono", Consolas, Monaco, monospace;
+}
+
+/* ============================================
+   表格
+   ============================================ */
+
+.markdown-preview[data-theme="default"] table {
+  width: 100%;
+  margin: 1em 0;
+  font-size: 0.9375em;
+  border-collapse: collapse;
+}
+
+.markdown-preview[data-theme="default"] thead {
+  font-weight: 700;
+}
+
+.markdown-preview[data-theme="default"] th,
+.markdown-preview[data-theme="default"] td {
+  padding: 0.25em 0.5em;
+  text-align: left;
+  word-break: keep-all;
+  border: 1px solid #dfdfdf;
+}
+
+.markdown-preview[data-theme="default"] th {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.markdown-preview[data-theme="default"] tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Frontmatter 表格 */
+.markdown-preview[data-theme="default"] .frontmatter-table {
+  width: auto;
+  margin-bottom: 1.25em;
+  font-size: 0.875em;
+  border: none;
+}
+
+.markdown-preview[data-theme="default"] .frontmatter-table td {
+  padding: 0.2em 0.75em 0.2em 0;
+  border: none;
+}
+
+.markdown-preview[data-theme="default"] .frontmatter-key {
+  font-size: 0.85em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.markdown-preview[data-theme="default"] .frontmatter-key::after {
+  content: ":";
+}
+
+.markdown-preview[data-theme="default"] .frontmatter-value {
+  color: #666;
+}
+
+/* ============================================
+   分隔线
+   ============================================ */
+
+.markdown-preview[data-theme="default"] hr {
+  height: 0.4em;
+  margin: 1.5em 0;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 2px 0 0;
+  transform: scale(1, 0.5);
+  transform-origin: 0 0;
+}
+
+/* ============================================
+   图片与媒体
+   ============================================ */
+
+.markdown-preview[data-theme="default"] img {
+  display: block;
+  max-width: 100%;
+  margin: 0.1em auto 0.5em;
+  border-radius: 4px;
+}
+
+.markdown-preview[data-theme="default"] picture {
+  display: block;
+  margin: 1em 0;
+}
+
+.markdown-preview[data-theme="default"] picture img {
+  margin: 0;
+}
+
+.markdown-preview[data-theme="default"] figure {
+  margin: 1.5em 8px;
+}
+
+.markdown-preview[data-theme="default"] figure img {
+  display: block;
+  margin: 0 auto;
+}
+
+.markdown-preview[data-theme="default"] figcaption,
+.markdown-preview[data-theme="default"] .md-figcaption {
+  font-size: 0.8em;
+  color: #888;
+  text-align: center;
+}
+
+/* ============================================
+   脚注
+   ============================================ */
+
+.markdown-preview[data-theme="default"] .footnotes {
+  padding-top: 0.75em;
+  margin: 0.5em 8px;
+  font-size: 80%;
+  color: hsl(var(--foreground));
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.markdown-preview[data-theme="default"] .footnotes ol {
+  padding-left: 1.25em;
+}
+
+.markdown-preview[data-theme="default"] .footnote-ref {
+  font-size: 0.75em;
+  font-weight: 600;
+  vertical-align: super;
+  color: var(--md-primary-color);
+  text-decoration: none;
+}
+
+.markdown-preview[data-theme="default"] .footnote-backref,
+.markdown-preview[data-theme="default"] .data-footnote-backref {
+  font-weight: 600;
+  color: var(--md-primary-color);
+  text-decoration: none;
+}
+
+/* ============================================
+   定义列表
+   ============================================ */
+
+.markdown-preview[data-theme="default"] dl {
+  margin: 1em 0;
+}
+
+.markdown-preview[data-theme="default"] dt {
+  display: inline-block;
+  padding-bottom: 0.1em;
+  margin-top: 0.5em;
+  font-weight: 600;
+  color: #222;
+}
+
+.markdown-preview[data-theme="default"] dt:first-child {
+  margin-top: 0;
+}
+
+.markdown-preview[data-theme="default"] dd {
+  margin-top: 0.25em;
+  margin-left: 1.25em;
+  color: #555;
+}
+
+/* ============================================
+   键盘按键
+   ============================================ */
+
+.markdown-preview[data-theme="default"] kbd {
+  display: inline-block;
+  padding: 0.15em 0.4em;
+  font-family: "Fira Code", Menlo, Consolas, monospace;
+  font-size: 0.8125em;
+  font-weight: 600;
+  color: #222;
+  background-color: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+/* ============================================
+   数学公式
+   ============================================ */
+
+.markdown-preview[data-theme="default"] .math-inline,
+.markdown-preview[data-theme="default"] .katex-inline {
+  max-width: 100%;
+  overflow-x: auto;
+  font-size: 1em;
+}
+
+.markdown-preview[data-theme="default"] .math-display,
+.markdown-preview[data-theme="default"] .katex-block {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5em 0;
+  margin: 1em 0;
+  text-align: center;
+}
+
+/* ============================================
+   折叠详情
+   ============================================ */
+
+.markdown-preview[data-theme="default"] details {
+  padding: 0.5em 0.75em;
+  margin: 1em 0;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+.markdown-preview[data-theme="default"] summary {
+  font-size: 0.9375em;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+}
+
+.markdown-preview[data-theme="default"] details[open] summary {
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   嵌入媒体
+   ============================================ */
+
+.markdown-preview[data-theme="default"] iframe,
+.markdown-preview[data-theme="default"] video {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* ============================================
+   元信息与时间
+   ============================================ */
+
+.markdown-preview[data-theme="default"] .meta,
+.markdown-preview[data-theme="default"] time {
+  font-size: 0.8125em;
+  color: #666;
+}
+
+/* ============================================
+   Ruby 注音
+   ============================================ */
+
+.markdown-preview[data-theme="default"] ruby {
+  ruby-align: center;
+}
+
+.markdown-preview[data-theme="default"] rt {
+  font-size: 0.5em;
+  color: #666;
+}
+
+.markdown-preview[data-theme="default"] rp {
+  color: #888;
+}
+
+/* ============================================
+   其他行内元素
+   ============================================ */
+
+.markdown-preview[data-theme="default"] abbr[title] {
+  text-decoration: none;
+  cursor: help;
+  border-bottom: 1px dotted #666;
+}
+
+.markdown-preview[data-theme="default"] var {
+  font-style: italic;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.markdown-preview[data-theme="default"] samp,
+.markdown-preview[data-theme="default"] tt {
+  padding: 0.1em 0.3em;
+  font-family: "Fira Code", Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  color: #222;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
+
+.markdown-preview[data-theme="default"] q {
+  color: #222;
+  quotes: '"' '"' "" " " "" "'" "'";
+}
+
+.markdown-preview[data-theme="default"] q::before {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--md-primary-color);
+  content: open-quote;
+}
+
+.markdown-preview[data-theme="default"] q::after {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--md-primary-color);
+  content: close-quote;
+}
+
+/* ============================================
+   标记高亮样式
+   ============================================ */
+
+.markdown-preview[data-theme="default"] .markup-highlight {
+  padding: 2px 4px;
+  color: #fff;
+  background-color: var(--md-primary-color);
+  border-radius: 2px;
+}
+
+.markdown-preview[data-theme="default"] .markup-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="default"] .markup-wavyline {
+  text-decoration: underline wavy;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--md-primary-color);
+}

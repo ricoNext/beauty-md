@@ -5,6 +5,8 @@ export interface MarkdownStyle {
 
 export const markdownStyles: MarkdownStyle[] = [
   { id: "default", name: "默认" },
+  { id: "elegant", name: "优雅" },
+  { id: "minimal", name: "简洁" },
   { id: "ayu-light", name: "Ayu Light" },
   { id: "bauhaus", name: "Bauhaus" },
   { id: "blueprint", name: "Blueprint" },
@@ -24,4 +26,3 @@ export const markdownStyles: MarkdownStyle[] = [
 export type MarkdownStyleId = (typeof markdownStyles)[number]["id"];
 
 export const markdownStyleIds = markdownStyles.map((s) => s.id);
-

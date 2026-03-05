@@ -1,0 +1,633 @@
+/* ============================================
+   Elegant - 优雅主题
+   基于用户提供的 CSS 样式 (@brzhang)
+   在默认主题基础上添加优雅的视觉效果
+   ============================================ */
+
+/* 容器基础样式与 CSS 变量定义 */
+.markdown-preview[data-theme="elegant"] {
+  --md-font-size: 16px;
+  --md-primary-color: #576b95;
+  --foreground: 0 0% 10%;
+
+  padding: 1.5em 1em;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  font-size: var(--md-font-size);
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+/* ============================================
+   标题样式
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] h1,
+.markdown-preview[data-theme="elegant"] h2,
+.markdown-preview[data-theme="elegant"] h3,
+.markdown-preview[data-theme="elegant"] h4,
+.markdown-preview[data-theme="elegant"] h5,
+.markdown-preview[data-theme="elegant"] h6 {
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.markdown-preview[data-theme="elegant"] h1 {
+  padding: 0.5em 1em;
+  font-size: calc(var(--md-font-size) * 1.4);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="elegant"] h2 {
+  padding: 0.3em 1em;
+  font-size: calc(var(--md-font-size) * 1.3);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-preview[data-theme="elegant"] h3 {
+  padding-left: 12px;
+  font-size: calc(var(--md-font-size) * 1.2);
+  border-bottom: 1px dashed var(--md-primary-color);
+  border-left: 4px solid var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="elegant"] h4 {
+  font-size: calc(var(--md-font-size) * 1.1);
+}
+
+.markdown-preview[data-theme="elegant"] h5 {
+  font-size: var(--md-font-size);
+}
+
+.markdown-preview[data-theme="elegant"] h6 {
+  font-size: var(--md-font-size);
+}
+
+.markdown-preview[data-theme="elegant"] > h1:first-child,
+.markdown-preview[data-theme="elegant"] > h2:first-child,
+.markdown-preview[data-theme="elegant"] > h3:first-child,
+.markdown-preview[data-theme="elegant"] > h4:first-child,
+.markdown-preview[data-theme="elegant"] > h5:first-child,
+.markdown-preview[data-theme="elegant"] > h6:first-child {
+  margin-top: 0;
+}
+
+/* ============================================
+   段落
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] p {
+  margin-bottom: 0.9em;
+}
+
+.markdown-preview[data-theme="elegant"] p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   行内文本样式
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] strong,
+.markdown-preview[data-theme="elegant"] b {
+  font-weight: 600;
+}
+
+.markdown-preview[data-theme="elegant"] em,
+.markdown-preview[data-theme="elegant"] i {
+  font-size: inherit;
+  font-style: italic;
+}
+
+.markdown-preview[data-theme="elegant"] mark {
+  padding: 0.1em 0.2em;
+  background-color: #ffe294;
+}
+
+.markdown-preview[data-theme="elegant"] small {
+  font-size: 0.875em;
+  color: #666;
+}
+
+.markdown-preview[data-theme="elegant"] del,
+.markdown-preview[data-theme="elegant"] s,
+.markdown-preview[data-theme="elegant"] strike {
+  color: #888;
+  text-decoration: line-through;
+}
+
+.markdown-preview[data-theme="elegant"] ins {
+  padding: 0.1em 0.2em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--md-primary-color);
+}
+
+/* ============================================
+   链接
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] a {
+  color: #576b95;
+  text-decoration: none;
+}
+
+.markdown-preview[data-theme="elegant"] a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   引用块
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] blockquote {
+  padding: 1em 1em 1em 2em;
+  margin: 1em 0 1em 0;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
+  border-left: 4px solid var(--md-primary-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.markdown-preview[data-theme="elegant"] blockquote p {
+  margin-bottom: 0.4em;
+}
+
+.markdown-preview[data-theme="elegant"] blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* GFM Alert 样式覆盖 */
+.markdown-preview[data-theme="elegant"] .markdown-alert {
+  font-style: italic;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   列表
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] ol {
+  padding-left: 1.5em;
+  margin-bottom: 0.9em;
+  list-style-type: decimal;
+}
+
+.markdown-preview[data-theme="elegant"] ul {
+  padding-left: 1.5em;
+  margin-bottom: 0.9em;
+  list-style: none;
+}
+
+.markdown-preview[data-theme="elegant"] ul li {
+  position: relative;
+  padding-left: 1.2em;
+}
+
+.markdown-preview[data-theme="elegant"] ul li::before {
+  position: absolute;
+  left: 0;
+  color: var(--md-primary-color);
+  content: "•";
+}
+
+.markdown-preview[data-theme="elegant"] li {
+  margin: 0.5em 8px;
+}
+
+.markdown-preview[data-theme="elegant"] li > ul,
+.markdown-preview[data-theme="elegant"] li > ol {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+/* 任务列表 */
+.markdown-preview[data-theme="elegant"] ul.contains-task-list {
+  padding-left: 0;
+}
+
+.markdown-preview[data-theme="elegant"] ul.contains-task-list li::before {
+  content: none;
+}
+
+.markdown-preview[data-theme="elegant"] li.task-list-item {
+  display: flex;
+  gap: 0.4em;
+  align-items: flex-start;
+}
+
+.markdown-preview[data-theme="elegant"] input[type="checkbox"] {
+  margin-top: 0.3em;
+  accent-color: var(--md-primary-color);
+}
+
+/* ============================================
+   代码块
+   ============================================ */
+
+/* 代码块样式由代码主题系统控制，预览主题只设置边框和阴影 */
+.markdown-preview[data-theme="elegant"] pre {
+  border-radius: 6px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.markdown-preview[data-theme="elegant"] pre code {
+  font-family: "Fira Code", Menlo, "Operator Mono", Consolas, Monaco, monospace;
+}
+
+/* ============================================
+   表格
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] table {
+  width: 100%;
+  margin: 1em 8px;
+  overflow: hidden;
+  font-size: 0.9375em;
+  color: hsl(var(--foreground));
+  border-spacing: 0;
+  border-collapse: separate;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-preview[data-theme="elegant"] thead {
+  color: #fff;
+}
+
+.markdown-preview[data-theme="elegant"] tr:first-child th {
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--md-primary-color);
+}
+
+.markdown-preview[data-theme="elegant"] th,
+.markdown-preview[data-theme="elegant"] td {
+  padding: 0.5em 1em;
+  text-align: left;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.markdown-preview[data-theme="elegant"] tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Frontmatter 表格 */
+.markdown-preview[data-theme="elegant"] .frontmatter-table {
+  width: auto;
+  margin-bottom: 1.25em;
+  font-size: 0.875em;
+  border: none;
+  box-shadow: none;
+}
+
+.markdown-preview[data-theme="elegant"] .frontmatter-table td {
+  padding: 0.2em 0.75em 0.2em 0;
+  border: none;
+}
+
+.markdown-preview[data-theme="elegant"] .frontmatter-key {
+  font-size: 0.85em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.markdown-preview[data-theme="elegant"] .frontmatter-key::after {
+  content: ":";
+}
+
+.markdown-preview[data-theme="elegant"] .frontmatter-value {
+  color: #666;
+}
+
+/* ============================================
+   分隔线
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] hr {
+  height: 1px;
+  margin: 2em 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0)
+  );
+  border: none;
+}
+
+/* ============================================
+   图片与媒体
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] img {
+  margin: 1em 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-preview[data-theme="elegant"] picture {
+  display: block;
+  margin: 1em 0;
+}
+
+.markdown-preview[data-theme="elegant"] picture img {
+  margin: 0;
+}
+
+.markdown-preview[data-theme="elegant"] figure {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.markdown-preview[data-theme="elegant"] figure img {
+  display: block;
+  margin: 0 auto;
+}
+
+.markdown-preview[data-theme="elegant"] figcaption,
+.markdown-preview[data-theme="elegant"] .md-figcaption {
+  padding: 0.25em 0;
+  margin-top: 0.4em;
+  font-size: 0.8125em;
+  color: #888;
+  text-align: center;
+}
+
+/* ============================================
+   脚注
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] .footnotes {
+  padding-top: 0.75em;
+  margin-top: 1.5em;
+  font-size: 0.875em;
+  color: #666;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.markdown-preview[data-theme="elegant"] .footnotes ol {
+  padding-left: 1.25em;
+}
+
+.markdown-preview[data-theme="elegant"] .footnote-ref {
+  font-size: 0.75em;
+  font-weight: 600;
+  vertical-align: super;
+  color: var(--md-primary-color);
+  text-decoration: none;
+}
+
+.markdown-preview[data-theme="elegant"] .footnote-backref,
+.markdown-preview[data-theme="elegant"] .data-footnote-backref {
+  font-weight: 600;
+  color: var(--md-primary-color);
+  text-decoration: none;
+}
+
+/* ============================================
+   定义列表
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] dl {
+  margin: 1em 0;
+}
+
+.markdown-preview[data-theme="elegant"] dt {
+  display: inline-block;
+  padding-bottom: 0.1em;
+  margin-top: 0.5em;
+  font-weight: 600;
+  color: #222;
+}
+
+.markdown-preview[data-theme="elegant"] dt:first-child {
+  margin-top: 0;
+}
+
+.markdown-preview[data-theme="elegant"] dd {
+  margin-top: 0.25em;
+  margin-left: 1.25em;
+  color: #555;
+}
+
+/* ============================================
+   键盘按键
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] kbd {
+  display: inline-block;
+  padding: 0.15em 0.4em;
+  font-family: "Fira Code", Menlo, Consolas, monospace;
+  font-size: 0.8125em;
+  font-weight: 600;
+  color: #222;
+  background-color: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+/* ============================================
+   警告框
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] .markdown-alert {
+  padding: 0.625em 1em;
+  margin: 1em 0;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 4px solid var(--md-primary-color);
+  border-radius: 6px;
+}
+
+.markdown-preview[data-theme="elegant"] .markdown-alert-title {
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+  margin-bottom: 0.3em;
+  font-size: 0.875em;
+  font-weight: 600;
+}
+
+.markdown-preview[data-theme="elegant"] .markdown-alert-note {
+  border-left-color: #576b95;
+}
+
+.markdown-preview[data-theme="elegant"]
+  .markdown-alert-note
+  .markdown-alert-title {
+  color: #576b95;
+}
+
+.markdown-preview[data-theme="elegant"] .markdown-alert-tip {
+  border-left-color: #6cbf43;
+}
+
+.markdown-preview[data-theme="elegant"]
+  .markdown-alert-tip
+  .markdown-alert-title {
+  color: #6cbf43;
+}
+
+.markdown-preview[data-theme="elegant"] .markdown-alert-important {
+  border-left-color: #f29718;
+}
+
+.markdown-preview[data-theme="elegant"]
+  .markdown-alert-important
+  .markdown-alert-title {
+  color: #f29718;
+}
+
+.markdown-preview[data-theme="elegant"] .markdown-alert-warning {
+  border-left-color: #f2a300;
+}
+
+.markdown-preview[data-theme="elegant"]
+  .markdown-alert-warning
+  .markdown-alert-title {
+  color: #f2a300;
+}
+
+.markdown-preview[data-theme="elegant"] .markdown-alert-caution {
+  border-left-color: #e65050;
+}
+
+.markdown-preview[data-theme="elegant"]
+  .markdown-alert-caution
+  .markdown-alert-title {
+  color: #e65050;
+}
+
+/* ============================================
+   数学公式
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] .math-inline {
+  font-size: 1em;
+}
+
+.markdown-preview[data-theme="elegant"] .math-display {
+  padding: 0.75em;
+  margin: 1em 0;
+  overflow-x: auto;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+}
+
+/* ============================================
+   折叠详情
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] details {
+  padding: 0.5em 0.75em;
+  margin: 1em 0;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+.markdown-preview[data-theme="elegant"] summary {
+  font-size: 0.9375em;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+}
+
+.markdown-preview[data-theme="elegant"] details[open] summary {
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   嵌入媒体
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] iframe,
+.markdown-preview[data-theme="elegant"] video {
+  display: block;
+  max-width: 100%;
+  margin: 1em 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   元信息与时间
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] .meta,
+.markdown-preview[data-theme="elegant"] time {
+  font-size: 0.8125em;
+  color: #666;
+}
+
+/* ============================================
+   Ruby 注音
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] ruby {
+  ruby-align: center;
+}
+
+.markdown-preview[data-theme="elegant"] rt {
+  font-size: 0.5em;
+  color: #666;
+}
+
+.markdown-preview[data-theme="elegant"] rp {
+  color: #888;
+}
+
+/* ============================================
+   其他行内元素
+   ============================================ */
+
+.markdown-preview[data-theme="elegant"] abbr[title] {
+  text-decoration: none;
+  cursor: help;
+  border-bottom: 1px dotted #666;
+}
+
+.markdown-preview[data-theme="elegant"] var {
+  font-style: italic;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.markdown-preview[data-theme="elegant"] samp,
+.markdown-preview[data-theme="elegant"] tt {
+  padding: 0.1em 0.3em;
+  font-family: "Fira Code", Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  color: #222;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
+
+.markdown-preview[data-theme="elegant"] q {
+  color: #222;
+  quotes: '"' '"' "" " " "" "'" "'";
+}
+
+.markdown-preview[data-theme="elegant"] q::before {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--md-primary-color);
+  content: open-quote;
+}
+
+.markdown-preview[data-theme="elegant"] q::after {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--md-primary-color);
+  content: close-quote;
+}

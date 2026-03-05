@@ -5,7 +5,7 @@
 ## 功能概览
 
 - **左右分栏**：左侧 Markdown 编辑（CodeMirror 6），右侧实时预览，界面简洁无标题栏
-- **预览主题**：4 种排版主题（默认、简洁、现代、优雅），在预览区右侧通过 Popover 切换，选择结果持久化到本地
+- **预览主题**：8 种排版主题（默认、优雅、简洁、Ayu Light、Blueprint、Botanical、Newsprint、Professional），在预览区右侧通过 Popover 切换，选择结果持久化到本地
 - **代码高亮**：3 种代码样式（Atom One Dark、Default、CodePen Embed），同样在右侧操作栏通过 Popover 选择并持久化
 - **复制到公众号**：一键将当前内容转为带内联样式的 HTML 并写入剪贴板，适配公众号编辑器（代码块空白保护、列表/复选框规范化等）
 

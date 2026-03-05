@@ -6,30 +6,35 @@ const cache = new Map<MarkdownStyleId, string>();
 let resetCssCache: string | null = null;
 
 const fileMap: Record<MarkdownStyleId, string> = {
-	"ayu-light": "ayu-light.css",
-	bauhaus: "bauhaus.css",
-	blueprint: "blueprint.css",
-	botanical: "botanical.css",
-	"green-simple": "green-simple.css",
-	maximalism: "maximalism.css",
-	"neo-brutalism": "neo-brutalism.css",
-	newsprint: "newsprint.css",
-	organic: "organic.css",
-	"playful-geometric": "playful-geometric.css",
-	professional: "professional.css",
-	retro: "retro.css",
-	sketch: "sketch.css",
-	terminal: "terminal.css",
+  default: "default.css",
+  elegant: "elegant.css",
+  minimal: "minimal.css",
+  "ayu-light": "ayu-light.css",
+  bauhaus: "bauhaus.css",
+  blueprint: "blueprint.css",
+  botanical: "botanical.css",
+  "green-simple": "green-simple.css",
+  maximalism: "maximalism.css",
+  "neo-brutalism": "neo-brutalism.css",
+  newsprint: "newsprint.css",
+  organic: "organic.css",
+  "playful-geometric": "playful-geometric.css",
+  professional: "professional.css",
+  retro: "retro.css",
+  sketch: "sketch.css",
+  terminal: "terminal.css",
 };
 
 function resolveCssPath(id: MarkdownStyleId): string | undefined {
   const file = fileMap[id];
-  if (!file) return undefined;
+  if (!file) {
+    return undefined;
+  }
   return path.join(process.cwd(), "app", "themes", "markdown-style", file);
 }
 
 export async function loadMarkdownStyleCss(
-  id: MarkdownStyleId,
+  id: MarkdownStyleId
 ): Promise<string | undefined> {
   if (cache.has(id)) {
     return cache.get(id);
@@ -40,7 +45,9 @@ export async function loadMarkdownStyleCss(
   }
 
   const filePath = resolveCssPath(id);
-  if (!filePath) return undefined;
+  if (!filePath) {
+    return undefined;
+  }
 
   try {
     const buf = await fs.readFile(filePath);
@@ -53,11 +60,19 @@ export async function loadMarkdownStyleCss(
 }
 
 export async function loadMarkdownResetCss(): Promise<string | undefined> {
-  if (resetCssCache !== null) return resetCssCache;
+  if (resetCssCache !== null) {
+    return resetCssCache;
+  }
   if (typeof window !== "undefined") {
     throw new Error("loadMarkdownResetCss 仅支持在服务器环境调用");
   }
-  const filePath = path.join(process.cwd(), "app", "themes", "markdown-style", "reset.css");
+  const filePath = path.join(
+    process.cwd(),
+    "app",
+    "themes",
+    "markdown-style",
+    "reset.css"
+  );
   try {
     const buf = await fs.readFile(filePath);
     resetCssCache = buf.toString("utf8");
@@ -66,4 +81,3 @@ export async function loadMarkdownResetCss(): Promise<string | undefined> {
     return undefined;
   }
 }
-
